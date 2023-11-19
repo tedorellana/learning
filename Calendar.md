@@ -5,13 +5,13 @@
 - Estimated time:               44  hrs
 
 Calendar:
-11-18: 6 hrs    -  90 questions - (*)        [30]
-11-19: 6 hrs    - 180 questions - (*)        [Pending]
-11-20: 2 hrs    - 210 questions -            [Pending]
-11-21: 2 hrs    - 240 questions -            [Pending]
-11-22: 2 hrs    - 270 questions -            [Pending]
-11-23: 2 hrs    - 300 questions -            [Pending]
-11-24: 2 hrs    - 330 questions -            [Pending]
+11-18: 6 hrs    -  30 questions - (*)        [30]
+11-19: 6 hrs    -  30 questions - (*)        [30]
+11-20: 2 hrs    -  80 questions -            [Pending]
+11-21: 2 hrs    - 130 questions -            [Pending]
+11-22: 2 hrs    - 180 questions -            [Pending]
+11-23: 2 hrs    - 230 questions -            [Pending]
+11-24: 2 hrs    - 280 questions -            [Pending]
 11-25: 6 hrs    - 420 questions - (*)        [Pending]
 11-26: 6 hrs    - 510 questions - (*)        [Pending]
 11-27: 2 hrs    - 540 questions -            [Pending]
