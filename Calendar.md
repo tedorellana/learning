@@ -7,9 +7,9 @@
 Calendar:
 11-18: 6 hrs    -  30 questions - (*)        [30]
 11-19: 6 hrs    -  30 questions - (*)        [30]
-11-20: 2 hrs    -  80 questions -            [Pending]
-11-21: 2 hrs    - 130 questions -            [Pending]
-11-22: 2 hrs    - 180 questions -            [Pending]
+11-20: 2 hrs    -  80 questions -            [30]
+11-21: 2 hrs    - 130 questions -            [30]
+11-22: 2 hrs    - 180 questions -            [43]
 11-23: 2 hrs    - 230 questions -            [Pending]
 11-24: 2 hrs    - 280 questions -            [Pending]
 11-25: 6 hrs    - 420 questions - (*)        [Pending]
