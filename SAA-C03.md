@@ -194,39 +194,52 @@ You can use a NAT gateway so that instances in a private subnet can connect to s
 
 - Private – Instances in private subnets can connect to other VPCs or your on-premises network through a private NAT gateway. You can route traffic from the NAT gateway through a transit gateway or a virtual private gateway. You cannot associate an elastic IP address with a private NAT gateway. You can attach an internet gateway to a VPC with a private NAT gateway, but if you route traffic from the private NAT gateway to the internet gateway, the internet gateway drops the traffic.
 
+## AWS Direct Connect ##
+Is a network service that allows you to establish a dedicated network connection from your on-premises data center to AWS. This connection bypasses the public Internet and can provide more reliable, lower-latency communication between your on-premises application and Amazon S3. By directing backup traffic through the AWS Direct Connect connection, you can minimize the impact on your internet bandwidth and ensure timely backups to S3.
+
+## To prevent or mitigate future accidental deletions, consider the following features ##
+
+- Enable versioning to keep historical versions of an object.
+- Enable Cross-Region Replication of objects.
+- Enable MFA delete to require multi-factor authentication (MFA) when deleting an object version.
+
+## Amazon Macie ##
+Is a data security service that discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, and enables automated protection against those risks.
+
+## Patch Manager ##
+The primary focus of Patch Manager, a capability of AWS Systems Manager, is on installing operating systems security-related updates on managed nodes. By default, Patch Manager doesn't install all available patches, but rather a smaller set of patches focused on security. (Ref https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-how-it-works-selection.html)
 
 
+## AWS Systemss Run Command ##
+Run Command allows you to automate common administrative tasks and perform one-time configuration changes at scale.
 
+## Amazon EventBridge ##
+EventBridge is a serverless service that uses events to connect application components together, making it easier for you to build scalable event-driven applications. Event-driven architecture is a style of building loosely-coupled software systems that work together by emitting and responding to events. Event-driven architecture can help you boost agility and build reliable, scalable applications.
 
+## Elastic File System ##
+EFS is a managed elastic file system designed for use across different machines and availability zones, 
 
+## Elastic Block Store ##
+EBS is designed as a fast and reliable block storage volume for single machines
 
+## S3 Object Lock ##
+Blocks permanent object deletion during a customer-defined retention period so that you can enforce retention policies as an added layer of data protection or for regulatory compliance.
 
+## Amazon FSx for Windows File Server ##
+Provides fully managed Microsoft Windows file servers, backed by a fully native Windows file system. FSx for Windows File Server has the features, performance, and compatibility to easily lift and shift enterprise applications to the AWS Cloud.
 
+## Amazon Comprehend ##
+Is a natural-language processing (NLP) service that uses machine learning to uncover valuable insights and connections in text.
 
+## Amazon Rekognition ##
+Makes it easy to add image and video analysis to your applications. You just have to provide an image or video to the Amazon Rekognition API, and the service can:
 
+- Identify labels (objects, concepts, people, scenes, and activities) and text*
+- Detect inappropriate content
+- Provide highly accurate facial analysis, face comparison, and face search capabilities
 
+## Amazon SageMaker ##
+Is a fully managed machine learning service. With SageMaker, data scientists and developers can quickly and easily build and train machine learning models, and then directly deploy them into a production-ready hosted environment
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## AWS Fargate ## 
+Is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
