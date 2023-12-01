@@ -17,7 +17,7 @@ Calendar:
 11-27: 2 hrs    -  60 questions -            [-]
 11-28: 2 hrs    -  60 questions -            [-]
 11-29: 2 hrs    -  60 questions -            [-]
-11-30: 2 hrs    -  90 questions -            [Pending] *
+11-30: 2 hrs    -  90 questions -            [75]
 12-01: 2 hrs    - 120 questions -            [Pending]
 12-02: 6 hrs    - 210 questions - (*)        [Pending]
 12-03: 6 hrs    - 300 questions - (*)        [Pending]

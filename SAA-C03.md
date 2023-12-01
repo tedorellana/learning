@@ -20,7 +20,7 @@
 ### Amazon Elastic File System ###
 - Store files without server
 - Pay just for the storage.
-- Support corss az.
+- Support cross Availability zones.
 
 ### Elastic Block Store ###
 - High performance access.
@@ -47,6 +47,10 @@
 - Choose from three archive storage classes optimized for different access patterns and storage duration.
 
 - The S3 Glacier storage classes provide virtually unlimited scalability and are designed for 99.999999999% (11 nines) of data durability.
+
+## S3 Standard-Infrequent Access ## 
+Is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval charge.
+
 
 ### Amazon Elastic File System (EFS) ###
 - Serverless, fully elastic file storage
@@ -228,6 +232,9 @@ Blocks permanent object deletion during a customer-defined retention period so t
 ## Amazon FSx for Windows File Server ##
 Provides fully managed Microsoft Windows file servers, backed by a fully native Windows file system. FSx for Windows File Server has the features, performance, and compatibility to easily lift and shift enterprise applications to the AWS Cloud.
 
+## Amazon FSx File Gateway (FSx File Gateway) ##
+Is a new File Gateway type that provides low latency and efficient access to in-cloud FSx for Windows File Server file shares from your on-premises facility
+
 ## Amazon Comprehend ##
 Is a natural-language processing (NLP) service that uses machine learning to uncover valuable insights and connections in text.
 
@@ -238,8 +245,26 @@ Makes it easy to add image and video analysis to your applications. You just hav
 - Detect inappropriate content
 - Provide highly accurate facial analysis, face comparison, and face search capabilities
 
+## Amazon Textract ## 
+Is a machine learning (ML) service that automatically extracts text, handwriting, and data from scanned documents.
+
 ## Amazon SageMaker ##
 Is a fully managed machine learning service. With SageMaker, data scientists and developers can quickly and easily build and train machine learning models, and then directly deploy them into a production-ready hosted environment
 
 ## AWS Fargate ## 
 Is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
+
+## ChangeMessageVisibility ##
+In case of SQS - multi-consumers if one consumer has already picked the message and is processing, in meantime other consumer can pick it up and process the message there by two copies are added at the end. To avoid this the message is made invisible from the time its picked and deleted after processing. This visibility timeout is increased according to max time taken to process the message
+
+## RDS Proxy is a fully-managed ##
+Highly available, and easy-to-use database proxy feature of Amazon RDS that enables your applications to: 1) improve scalability by pooling and sharing database connections; 2) improve availability by reducing database failover times by up to 66% and preserving application connections
+
+## Recovery time objective (RTO) ##
+Is the maximum acceptable time that an application, computer, network, or system can be down after an unexpected disaster, failure, or comparable event takes place. RTO captures the maximum allowable time between restoration of normal service levels and resumption of typical operations and the unexpected failure or disaster. RTO defines a turning point, after which time the consequences of interruption from a disaster or failure become unacceptable.
+
+## Recovery point objective (RPO) ###
+Is defined as the maximum amount of data – as measured by time – that can be lost after a recovery from a disaster, failure, or comparable event before data loss will exceed what is acceptable to an organization.
+
+## Amazon DynamoDB point-in-time recovery ## 
+Enables you to back up your table data continuously by using point-in-time recovery (PITR). When you enable PITR, DynamoDB backs up your table data automatically with per-second granularity so that you can restore to any given second in the preceding 35 days
