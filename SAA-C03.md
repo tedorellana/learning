@@ -4,13 +4,6 @@
 - Good for high speed
 - Designed to optimize transfer speeds from across the world into S3 buckets.
 
-### Amazon Athena ###
-
-- Interactive query service
-- Works with Amazon Simple Storage Service (Amazon S3)
-- Use standard SQL
-- Can run ad-hoc queries and get result in seconds.
-
 ### Principal OrgID ###
 - Validates if the principal accessing the resource is within your organization.
 
@@ -90,6 +83,14 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 ## Amazon CloudFront ##
 Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users.
 CloudFront improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery).
+CloudFront uses Edge Locations to cache content
+
+## AWS Global Accelerato ##
+AWS Global Accelerator is a networking service that helps you improve the availability, performance, and security of your public applications. Global Accelerator provides two global static public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs.
+Use Edge Locations to find an optimal pathway to the nearest regional endpoint.
+
+![AWS Global Accelerator](/images/aws-global-accelerator.png)
+
 
 ## Amazon Aurora (Aurora) ##
 - Is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
@@ -182,6 +183,12 @@ Determine their states by monitoring the states of other alarms. You can **use c
 - Is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. Both services integrate with AWS Shield for DDoS protection.
 - Improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. 
 
+### Amazon Athena ###
+- Interactive query service
+- Works with Amazon Simple Storage Service (Amazon S3)
+- Use standard SQL
+- Can run ad-hoc queries and get result in seconds.
+- Athena queries historical data from S3.
 
 ## Amazon Kinesis Data Firehose ##
 Is a fully managed service for delivering real-time streaming data to destinations such as Amazon Simple Storage Service (Amazon S3), Amazon Redshift, Amazon OpenSearch Service, Amazon OpenSearch Serverless, Splunk, and any custom HTTP endpoint or HTTP endpoints owned by supported third-party service providers, including Datadog, Dynatrace, LogicMonitor, MongoDB, New Relic, Coralogix, and Elastic. Kinesis Data Firehose is part of the Kinesis streaming data platform, along with Kinesis Data Streams, Kinesis Video Streams, and Amazon Managed Service for Apache Flink. With Kinesis Data Firehose, you don't need to write applications or manage resources.
@@ -191,6 +198,7 @@ Is a fully managed streaming data service. You can continuously add various type
 
 ## Amazon Kinesis Data Analytics ##
 Enables you to quickly author SQL code that continuously reads, processes, and stores data in near real time. Using standard SQL queries on the streaming data, you can construct applications that transform and provide insights into your data.
+Kinesis Data Analytics processed real-time streaming data
 
 ## CloudTrail ##
 Track user activity and API call history.
@@ -254,6 +262,7 @@ Run Command allows you to automate common administrative tasks and perform one-t
 
 ## Amazon EventBridge ##
 EventBridge is a serverless service that uses events to connect application components together, making it easier for you to build scalable event-driven applications. Event-driven architecture is a style of building loosely-coupled software systems that work together by emitting and responding to events. Event-driven architecture can help you boost agility and build reliable, scalable applications.
+You can use AWS Lambda and Amazon EventBridge to schedule a Lambda function to stop and start the idle databases with specific tags to save on compute costs.
 
 ## Elastic File System ##
 EFS is a managed elastic file system designed for use across different machines and availability zones, 
@@ -375,6 +384,13 @@ Not applied to Fargate or Lambda.
 Cmpute Savings Plans provide the most flexibility and help to reduce your costs by up to 66%.
 These plans automatically apply to EC2 instance usage regardless of instance family, size, AZ, region, OS or tenancy, and also apply to Fargate and Lambda usage." EC2 instance Savings Plans are not applied to Fargate or Lambda
 
+# S3 Lock mmodes #
+
+## Compliance Mode. ##
+Set the specific rule tou want to be applied.
+
+## Governance Mode ##
+Is that there are NO users that can override the retention periods set or delete an object, and that also includes your AWS root account which has the highest privileges.
 
 
 
@@ -406,6 +422,3 @@ These plans automatically apply to EC2 instance usage regardless of instance fam
 
 
 
-
-
-}
