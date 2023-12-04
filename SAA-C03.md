@@ -14,13 +14,22 @@
 ### Principal OrgID ###
 - Validates if the principal accessing the resource is within your organization.
 
+## VPC ##
+- Is a virtual network that closely resembles a traditional network that you'd operate in your own data center. After you create a VPC, you can add subnets.
+
 ### VPC Endpoints ###
 - Allows to connect to AWS services using a private network instead using the public internet.
 
-### Amazon Elastic File System ###
-- Store files without server
-- Pay just for the storage.
-- Support cross Availability zones.
+## Virtual private gateway ##
+A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
+
+## A VPC endpoint ##
+Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+
+## VPC and subnets overview ##
+The following diagram provides an overview of the resources included in this example. The VPC has public subnets and private subnets in two Availability Zones. Each public subnet contains a NAT gateway and a load balancer node. The servers run in the private subnets, are launched and terminated by using an Auto Scaling group, and receive traffic from the load balancer. The servers can connect to the internet by using the NAT gateway. The servers can connect to Amazon S3 by using a gateway VPC endpoint.
+
+![VPC Subnets Structure Overview](/images/vpc-subnets-structure-overview.png)
 
 ### Elastic Block Store ###
 - High performance access.
@@ -79,18 +88,20 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 - Is a secrets management service that helps you protect access to your applications, services, and IT resources
 
 ## Amazon CloudFront ##
-- Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users.
+Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users.
+CloudFront improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery).
 
 ## Amazon Aurora (Aurora) ##
 - Is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
 - Better for read than write.
 - Is 5x performance improvement over MySQL on RDS and handles more read requests than write.
+- Aurora provides up to five times better latency than RDS and can scale up to ten times more packed operations per second than MySQL engine in RDS. It also offers an encrypted storage option for better data security
+
+## Amazon Relational Database Service (Amazon RDS) for MySQL ##
+Is a fully managed, open source, relational database that makes it easier to set up, operate, and scale MySQL databases in the cloud.
 
 ## Amazon Relational Database Service (Amazon RDS) ## 
 - Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
-
-## VPC ##
-- Is a virtual network that closely resembles a traditional network that you'd operate in your own data center
 
 ## AWS Network Firewall ##
 - Is a managed firewall service that provides filtering for both inbound and outbound network traffic. It allows you to create rules for traffic inspection and filtering, which can help protect your production VPC.
@@ -108,6 +119,10 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 - Is used to created dashboard from S3, RDS, Redshift, Aurora, Athena, OpenSearch, Timestream.
 - Serveless BI.
 
+## Amazon Redshift ##
+Is a fully managed, petabyte-scale data warehouse service in the cloud. Amazon Redshift Serverless lets you access and analyze data without all of the configurations of a provisioned data warehouse. Resources are automatically provisioned and data warehouse capacity is intelligently scaled to deliver fast performance for even the most demanding and unpredictable workloads.
+You don't incur charges when the data warehouse is idle, so you only pay for what you use.
+
 ## IAM Role ## 
 - Could be used to grant access to an EC2 Intance.
 
@@ -116,6 +131,14 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 
 ## Amazon Elastic Block Store (Amazon EBS) ##
 - Is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).
+- Expensive than S3 and EFS
+
+### Amazon Elastic File System ###
+- Store files without server
+- Pay just for the storage.
+- Support cross Availability zones.
+- Cheap than EBS
+- Expensive than S3
 
 ## Amazon CloudFront ##
 - Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
@@ -143,19 +166,31 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 ## AWS Config ##
 - Helps you record configuration changes to software within EC2 instances in your AWS account and also virtual machines (VMs) or servers in your on-premises environment. The configuration information recorded by AWS Config includes Operating System updates, network configuration, and installed applications.
 
-## CloudWatch ##
+# CloudWatch #
 - Is a monitoring and management service that provides data and actionable insights for AWS, on-premises, hybrid, and other cloud applications and infrastructure resources.
+
+## Amazon CloudWatch logs ##
+You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.s
+CloudWatch Logs enables you to centralize the logs from all of your systems, applications, and AWS services that you use, in a single, highly scalable service. You can then easily view them, search them for specific error codes or patterns, filter them based on specific fields, or archive them securely for future analysis. CloudWatch Logs enables you to see all of your logs, regardless of their source, as a single and consistent flow of events ordered by time.
+
+## Composite alarms ##
+Determine their states by monitoring the states of other alarms. You can **use composite alarms to reduce alarm noise**. For example, you can create a composite alarm where the underlying metric alarms go into ALARM when they meet specific conditions. You then can set up your composite alarm to go into ALARM and send you notifications when the underlying metric alarms go into ALARM by configuring the underlying metric alarms never to take actions.
 
 ## Global Accelerator ##
 - Is a global service that supports endpoints in multiple AWS Regions.
 - Has automatic failover
 - Is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. Both services integrate with AWS Shield for DDoS protection.
+- Improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. 
+
 
 ## Amazon Kinesis Data Firehose ##
 Is a fully managed service for delivering real-time streaming data to destinations such as Amazon Simple Storage Service (Amazon S3), Amazon Redshift, Amazon OpenSearch Service, Amazon OpenSearch Serverless, Splunk, and any custom HTTP endpoint or HTTP endpoints owned by supported third-party service providers, including Datadog, Dynatrace, LogicMonitor, MongoDB, New Relic, Coralogix, and Elastic. Kinesis Data Firehose is part of the Kinesis streaming data platform, along with Kinesis Data Streams, Kinesis Video Streams, and Amazon Managed Service for Apache Flink. With Kinesis Data Firehose, you don't need to write applications or manage resources.
 
 ## Amazon Kinesis Data Streams ##
 Is a fully managed streaming data service. You can continuously add various types of data such as clickstreams, application logs, and social media to a Kinesis stream from hundreds of thousands of sources. Within seconds, the data will be available for your Kinesis Applications to read and process from the stream.
+
+## Amazon Kinesis Data Analytics ##
+Enables you to quickly author SQL code that continuously reads, processes, and stores data in near real time. Using standard SQL queries on the streaming data, you can construct applications that transform and provide insights into your data.
 
 ## CloudTrail ##
 Track user activity and API call history.
@@ -270,12 +305,15 @@ Is defined as the maximum amount of data – as measured by time – that can be
 Enables you to back up your table data continuously by using point-in-time recovery (PITR). When you enable PITR, DynamoDB backs up your table data automatically with per-second granularity so that you can restore to any given second in the preceding 35 days
 
 ## AWS DataSync ##
+Is a fully managed data transfer service that simplifies, automates, and accelerates transferring data between on-premises storage systems and Amazon S3, Amazon EFS, or Amazon FSx for Windows File Server.
 Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
+
 ## Amazon DynamoDB ##
 Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
 
 ## AWS Backup ##
 Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
+NO Glacier Deep is supported by AWS Backup.
 
 ## On-demand mode ##
 Is a good option if any of the following are true:
@@ -286,6 +324,9 @@ Is a good option if any of the following are true:
 ## Spot Instances ##
 A Spot Instance is an instance that uses spare EC2 capacity that is available for less than the On-Demand price. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly. The hourly price for a Spot Instance is called a Spot price.
 
+## AWS Spot Fleet ##
+Is a service that lets you create a fleet of EC2 instances that can help make your application more reliable and significantly cheaper to run. A fleet is composed of both Spot and On-Demand Instances.
+
 ## S3 Object Lock ##
 Used to store objects using a write-once-read-many (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. You can use S3 Object Lock to meet regulatory requirements that require WORM storage, or add an extra layer of protection against object changes and deletion.
 Versioning is required and automatically activated as Object Lock is enabled.
@@ -293,6 +334,46 @@ Versioning is required and automatically activated as Object Lock is enabled.
 ## Amazon FSx for Lustre ##
 Is a fully managed file system that is designed for high-performance workloads, such as gaming applications. It provides a high-performance, scalable, and fully managed file system that is optimized for Lustre clients, and it is fully integrated with Amazon EC2. It is the only option that meets the requirements of being fully managed and able to support Lustre clients.
 
+## AWS Glue ##
+Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources. You can use it for analytics, machine learning, and application development. It also includes additional productivity and data ops tooling for authoring, running jobs, and implementing business workflows.
+
+## The Object Lock legal hold operation ##
+Enables you to place a legal hold on an object version. Like setting a retention period, a legal hold prevents an object version from being overwritten or deleted. However, a legal hold doesn't have an associated retention period and remains in effect until removed
+
+## Using AWS Web Application Firewall (WAF) ##
+Has several benefits. Additional protection against web attacks using criteria that you specify. You can define criteria using characteristics of web requests such as the following:
+Presence of SQL code that is likely to be malicious (known as SQL injection).
+Presence of a script that is likely to be malicious (known as cross-site scripting).
+
+## AWS Firewall Manager ##
+Simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections.
+
+## SSL termination ##
+Refers to the process of decrypting encrypted traffic before passing it along to a web server.
+
+## A target tracking policy ##
+Allows the Auto Scaling group to automatically adjust the number of EC2 instances in the group based on a target value for a metric. In this case, the target value for the CPU utilization metric could be set to 40% to maintain the desired performance of the application. The Auto Scaling group would then automatically scale the number of instances up or down as needed to maintain the target value for the metric.
+
+## Origin access identity ##
+Is a special CloudFront user that you can associate with Amazon S3 origins, so that you can secure all or just some of your Amazon S3 content.
+
+## Amazon RDS Custom for Oracle ##
+Has access to the underlying OS and it provides less operational overhead. 
+
+## WS Database Migration Service (AWS DMS) ##
+Is a managed migration and replication service that helps move your database and analytics workloads to AWS quickly, securely, and with minimal downtime and zero data loss.
+
+## Amazon MQ ##
+Is a managed message broker service for Apache ActiveMQ and RabbitMQ that streamlines setup, operation, and management of message brokers on AWS.
+
+## EC2 Instance Savings plan ##
+Saves up to 72%.
+EC2 Savings Plans support EC2 only.
+Not applied to Fargate or Lambda.
+
+## Compute Savings Plans ##
+Cmpute Savings Plans provide the most flexibility and help to reduce your costs by up to 66%.
+These plans automatically apply to EC2 instance usage regardless of instance family, size, AZ, region, OS or tenancy, and also apply to Fargate and Lambda usage." EC2 instance Savings Plans are not applied to Fargate or Lambda
 
 
 
@@ -325,3 +406,6 @@ Is a fully managed file system that is designed for high-performance workloads, 
 
 
 
+
+
+}
