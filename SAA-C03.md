@@ -85,9 +85,10 @@ Is a web service that speeds up distribution of your static and dynamic web cont
 CloudFront improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery).
 CloudFront uses Edge Locations to cache content
 
-## AWS Global Accelerato ##
+## AWS Global Accelerator ##
 AWS Global Accelerator is a networking service that helps you improve the availability, performance, and security of your public applications. Global Accelerator provides two global static public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs.
 Use Edge Locations to find an optimal pathway to the nearest regional endpoint.
+Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses
 
 ![AWS Global Accelerator](/images/aws-global-accelerator.png)
 
@@ -292,6 +293,9 @@ Makes it easy to add image and video analysis to your applications. You just hav
 ## Amazon Textract ## 
 Is a machine learning (ML) service that automatically extracts text, handwriting, and data from scanned documents.
 
+## Amazon Transcribe ##
+Converts audio input into text, which opens the door for various text analytics applications on voice input. For instance, by using Amazon Comprehend on the converted text data from Amazon Transcribe, you can perform sentiment analysis or extract entities and key phrases.
+
 ## Amazon SageMaker ##
 Is a fully managed machine learning service. With SageMaker, data scientists and developers can quickly and easily build and train machine learning models, and then directly deploy them into a production-ready hosted environment
 
@@ -319,6 +323,9 @@ Is a data transfer service that uses network optimization techniques to transfer
 
 ## Amazon DynamoDB ##
 Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
+
+## DAX stands for DynamoDB Accelerator ## 
+It's like a turbo boost for your DynamoDB tables. It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
 
 ## AWS Backup ##
 Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
@@ -392,9 +399,20 @@ Set the specific rule tou want to be applied.
 ## Governance Mode ##
 Is that there are NO users that can override the retention periods set or delete an object, and that also includes your AWS root account which has the highest privileges.
 
+## Field-level encryption ##
+Allows you to enable your users to securely upload sensitive information to your web servers. The sensitive information provided by your users is encrypted at the edge, close to the user, and remains encrypted throughout your entire application stack
 
+## AWS Transfer Family ##
+Securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
 
+## Amazon Web Services (AWS) ##
+With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
+## Amazon Cognito ##
+It's a user directory, an authentication server, and an authorization service for OAuth 2.0 access tokens and AWS credentials. With Amazon Cognito, you can authenticate and authorize users from the built-in user directory, from your enterprise directory, and from consumer identity providers like Google and Facebook.
+
+## Amazon Pinpoint ## 
+Is an AWS service that you can use to engage with your customers across multiple messaging channels. You can use Amazon Pinpoint to send push notifications, in-app notifications, emails, text messages, voice messages, and messages over custom channels.
 
 
 
