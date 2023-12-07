@@ -92,7 +92,6 @@ Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over
 
 ![AWS Global Accelerator](/images/aws-global-accelerator.png)
 
-
 ## Amazon Aurora (Aurora) ##
 - Is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
 - Better for read than write.
@@ -352,6 +351,7 @@ Is a fully managed file system that is designed for high-performance workloads, 
 
 ## AWS Glue ##
 Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources. You can use it for analytics, machine learning, and application development. It also includes additional productivity and data ops tooling for authoring, running jobs, and implementing business workflows.
+Parquet format.
 
 ## The Object Lock legal hold operation ##
 Enables you to place a legal hold on an object version. Like setting a retention period, a legal hold prevents an object version from being overwritten or deleted. However, a legal hold doesn't have an associated retention period and remains in effect until removed
@@ -416,6 +416,23 @@ Is an AWS service that you can use to engage with your customers across multiple
 
 ## AWS ElastiCache ##
 Is a managed in-memory data store service that is well-suited for managing session data in a distributed architecture. It provides high-performance, scalable, and durable storage for session data, allowing multiple EC2 instances to access and share session data seamlessly. By using ElastiCache, the application can offload the session management workload from the EC2 instances and leverage the distributed caching capabilities of ElastiCache for improved scalability and performance.
+
+# Amazon ROute 53 #
+Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises.
+
+## multivalue answer routing policy in Route 53 ## 
+Allows you to configure multiple values for a DNS record, and Route 53 responds to DNS queries with multiple random values. This enables the distribution of traffic randomly among the available EC2 instances.
+
+## Failover routing ##
+Is designed to direct traffic to a backup resource or secondary location only when the primary resource or location is unavailable.
+
+## weighted routing policy ##
+Allows you to distribute traffic across multiple EC2 instances, it does not ensure random distribution
+
+![Amazon Route 53](/images/amazon-route-53.png)
+
+## Access control lists (ACLs) ##
+Are one of the resource-based options (see Overview of managing access) that you can use to manage access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other AWS accounts.
 
 
 
