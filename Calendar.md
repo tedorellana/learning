@@ -22,7 +22,7 @@ Calendar:
 12-02: 6 hrs    - 210 questions - (*)        [125]
 12-03: 6 hrs    - 300 questions - (*)        [150]
 12-04: 2 hrs    - 335 questions -            [167]
-12-05: 2 hrs    - 370 questions -            [201..]
+12-05: 2 hrs    - 370 questions -            [210]
 12-06: 2 hrs    - 405 questions -            [Pending]
 12-07: 2 hrs    - 440 questions -            [Pending]
 12-08: 2 hrs    - 530 questions - (*)        [Pending]
