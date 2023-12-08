@@ -120,7 +120,7 @@ Is a fully managed, open source, relational database that makes it easier to set
 - Is a security management service that helps you to centrally configure and manage firewalls across your accounts. It is not a service that performs traffic inspection or filtering.
 
 ## QuickSight ##
-- Is used to created dashboard from S3, RDS, Redshift, Aurora, Athena, OpenSearch, Timestream.
+- Is used to created dashboard from: S3, RDS, Redshift, Aurora, Athena, OpenSearch, Timestream.
 - Serveless BI.
 
 ## Amazon Redshift ##
@@ -330,7 +330,9 @@ Is a fully managed data transfer service that simplifies, automates, and acceler
 Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
 
 ## Amazon DynamoDB ##
-Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
+Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
+DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
+DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
 
 ## DAX stands for DynamoDB Accelerator ## 
 It's like a turbo boost for your DynamoDB tables. It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
@@ -359,7 +361,9 @@ Versioning is required and automatically activated as Object Lock is enabled.
 Is a fully managed file system that is designed for high-performance workloads, such as gaming applications. It provides a high-performance, scalable, and fully managed file system that is optimized for Lustre clients, and it is fully integrated with Amazon EC2. It is the only option that meets the requirements of being fully managed and able to support Lustre clients.
 
 ## AWS Glue ##
-Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources. You can use it for analytics, machine learning, and application development. It also includes additional productivity and data ops tooling for authoring, running jobs, and implementing business workflows.
+Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources.
+You can use it for analytics, machine learning, and application development.
+It also includes additional productivity and data ops tooling for authoring, running jobs, and implementing business workflows.
 Parquet format.
 
 ## The Object Lock legal hold operation ##
@@ -457,13 +461,23 @@ Is an IP address allocation method that improves data routing efficiency on the 
 ## Amazon EMR (previously called Amazon Elastic MapReduce) ##
 Is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark , on AWS to process and analyze vast amounts of data.
 
+## Single-AZ RDS database instance ##
+Is the simplest database configuration, and consists of a single database instance within a single availability zone. This configuration offers no redundancy as only one availability zone is utilized. Considering this configuration only utilizes one DB instance, this is the cheapest option.  Useful for development and QA testing instances, a Single-AZ configuration is not recommended for production loads.
 
+## The Multi-AZ RDS instance ##
+consists of a DB instance plus a single standby DB instance in a separate Availability Zone.  This configuration provides high availability and failover support via Amazon failover technology. 
 
+The standby replica is automatically provisioned by Amazon RDS in a separate availability zone. Data from the primary DB instance is synchronously replicated across availability zones to the standby instance.  In addition to fault tolerance, a Multi-AZ database instance can enhance your availability during plan system maintenance as updates can be applied to the standby and then a failover triggered.
 
+A Multi-AZ deployment is a good choice for a small production application.  However, it is not a solution for scaling high read load applications, as standby replicas cannot serve read traffic.
 
+## Multi-AZ RDS cluster ##
+The Multi-AZ RDS cluster consists of three DB instances, each in separate availability zones. This configuration provides high availability and failover support in addition to scaling to support high read loads. 
+The cluster consists of one writer instance, plus two read-only replica instances known as readers.
 
-
-
+## Amazon FSx for NetApp ONTAP ##
+Is when you need to move workloads running on NetApp or other NFS/SMB/iSCSI servers to AWS without modifying application code or how you manage data.
+Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's popular ONTAP file system.
 
 
 
