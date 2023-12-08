@@ -98,6 +98,9 @@ Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over
 - Is 5x performance improvement over MySQL on RDS and handles more read requests than write.
 - Aurora provides up to five times better latency than RDS and can scale up to ten times more packed operations per second than MySQL engine in RDS. It also offers an encrypted storage option for better data security
 
+## The warm standby approach ##
+Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
+
 ## Amazon Relational Database Service (Amazon RDS) for MySQL ##
 Is a fully managed, open source, relational database that makes it easier to set up, operate, and scale MySQL databases in the cloud.
 
@@ -169,6 +172,7 @@ You don't incur charges when the data warehouse is idle, so you only pay for wha
 
 # CloudWatch #
 - Is a monitoring and management service that provides data and actionable insights for AWS, on-premises, hybrid, and other cloud applications and infrastructure resources.
+- You can send continually metrics as streams to a destination of your choice. Could be Amazon kinesis Data Firehouse.
 
 ## Amazon CloudWatch logs ##
 You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.s
@@ -279,6 +283,9 @@ Provides fully managed Microsoft Windows file servers, backed by a fully native 
 ## Amazon FSx File Gateway (FSx File Gateway) ##
 Is a new File Gateway type that provides low latency and efficient access to in-cloud FSx for Windows File Server file shares from your on-premises facility
 
+## Joining the FSx for Windows File Server file system to the on-premises Active Directory  ## 
+will allow the company to use the existing Active Directory groups to restrict access to the file shares, folders, and files after the move to AWS. This option allows the company to continue using their existing access controls and management structure, making the transition to AWS more seamless.
+
 ## Amazon Comprehend ##
 Is a natural-language processing (NLP) service that uses machine learning to uncover valuable insights and connections in text.
 
@@ -306,6 +313,8 @@ In case of SQS - multi-consumers if one consumer has already picked the message 
 
 ## RDS Proxy is a fully-managed ##
 Highly available, and easy-to-use database proxy feature of Amazon RDS that enables your applications to: 1) improve scalability by pooling and sharing database connections; 2) improve availability by reducing database failover times by up to 66% and preserving application connections
+RDS Proxy: RDS Proxy is designed to manage database connections, pooling, and failover, improving database scalability and performance. It helps reduce the number of open connections to the database, which can be a common source of performance issues.
+Minimizing Changes: RDS Proxy can be introduced without significant changes to the application's architecture. It acts as an intermediary between the application and the database, handling connection pooling and reducing the load on the database.
 
 ## Recovery time objective (RTO) ##
 Is the maximum acceptable time that an application, computer, network, or system can be down after an unexpected disaster, failure, or comparable event takes place. RTO captures the maximum allowable time between restoration of normal service levels and resumption of typical operations and the unexpected failure or disaster. RTO defines a turning point, after which time the consequences of interruption from a disaster or failure become unacceptable.
@@ -405,8 +414,11 @@ Allows you to enable your users to securely upload sensitive information to your
 ## AWS Transfer Family ##
 Securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
 
-## Amazon Web Services (AWS) ##
+## Elastic Beanstalk ##
 With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+
+## AWS CloudFormation ##
+Is a service that helps you model and set up your AWS resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS. You create a template that describes all the AWS resources that you want (like Amazon EC2 instances or Amazon RDS DB instances), and CloudFormation takes care of provisioning and configuring those resources for you. You don't need to individually create and configure AWS resources and figure out what's dependent on what; CloudFormation handles that. The following scenarios demonstrate how CloudFormation can help.
 
 ## Amazon Cognito ##
 It's a user directory, an authentication server, and an authorization service for OAuth 2.0 access tokens and AWS credentials. With Amazon Cognito, you can authenticate and authorize users from the built-in user directory, from your enterprise directory, and from consumer identity providers like Google and Facebook.
@@ -416,6 +428,8 @@ Is an AWS service that you can use to engage with your customers across multiple
 
 ## AWS ElastiCache ##
 Is a managed in-memory data store service that is well-suited for managing session data in a distributed architecture. It provides high-performance, scalable, and durable storage for session data, allowing multiple EC2 instances to access and share session data seamlessly. By using ElastiCache, the application can offload the session management workload from the EC2 instances and leverage the distributed caching capabilities of ElastiCache for improved scalability and performance.
+While Amazon ElastiCache can improve performance by caching frequently accessed data, it's not specifically designed to address database read performance issues caused by connection management.
+
 
 # Amazon ROute 53 #
 Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises.
@@ -434,8 +448,14 @@ Allows you to distribute traffic across multiple EC2 instances, it does not ensu
 ## Access control lists (ACLs) ##
 Are one of the resource-based options (see Overview of managing access) that you can use to manage access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other AWS accounts.
 
+## Security Groups ##
+AWS Security Groups help you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With Security Groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols.
 
+## Classless Inter-Domain Routing (CIDR) ##
+Is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
 
+## Amazon EMR (previously called Amazon Elastic MapReduce) ##
+Is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark , on AWS to process and analyze vast amounts of data.
 
 
 

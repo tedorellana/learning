@@ -24,7 +24,7 @@ Calendar:
 12-04: 2 hrs    - 335 questions -            [167]
 12-05: 2 hrs    - 370 questions -            [210]
 12-06: 2 hrs    - 405 questions -            [250]
-12-07: 2 hrs    - 440 questions -            [Pending]
+12-07: 2 hrs    - 440 questions -            [275]
 12-08: 2 hrs    - 530 questions - (*)        [Pending]
 12-09: 2 hrs    - code practice - (X)        [-]
 12-10: 2 hrs    - code practice - (X)        [-]
