@@ -90,8 +90,17 @@ CloudFront uses Edge Locations to cache content
 AWS Global Accelerator is a networking service that helps you improve the availability, performance, and security of your public applications. Global Accelerator provides two global static public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs.
 Use Edge Locations to find an optimal pathway to the nearest regional endpoint.
 Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses
+UDP.
+Geographically dispersed.
 
 ![AWS Global Accelerator](/images/aws-global-accelerator.png)
+
+## Network Load Balancer ##
+Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
+Work with UDP.
+
+## Application Load Balancer ##
+A load balancer serves as the single point of contact for clients. The load balancer distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones. This increases the availability of your application.
 
 ## Amazon Aurora (Aurora) ##
 - Is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
@@ -104,6 +113,10 @@ Can be used to create and manage the data lake's metadata and enforce security a
 
 ## The warm standby approach ##
 Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
+
+## Amazon Relational Database Service (Amazon RDS) ##
+Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
+Do not support io2.
 
 ## Amazon Relational Database Service (Amazon RDS) for MySQL ##
 Is a fully managed, open source, relational database that makes it easier to set up, operate, and scale MySQL databases in the cloud.
@@ -225,6 +238,7 @@ With Kinesis Data Firehose, you don't need to write applications or manage resou
 Is a fully managed streaming data service. You can continuously add various types of data such as clickstreams, application logs, and social media to a Kinesis stream from hundreds of thousands of sources. Within seconds, the data will be available for your Kinesis Applications to read and process from the stream.
 Amazon Kinesis Data Streams can support ingestion rates as high as 1 MB/s and provide real-time data processing
 ensures minimal data loss in the event of an EC2 instance reboot since Kinesis Data Streams has a persistent data store for up to 7 days by default.
+A Kinesis data stream stores records from 24 hours by default, up to 8760 hours (365 days)
 
 ## Amazon Kinesis Data Analytics ##
 Enables you to quickly author SQL code that continuously reads, processes, and stores data in near real time. Using standard SQL queries on the streaming data, you can construct applications that transform and provide insights into your data.
@@ -232,6 +246,7 @@ Kinesis Data Analytics processed real-time streaming data
 
 ## CloudTrail ##
 Track user activity and API call history.
+AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of AWS account activities. CloudTrail can be used to log all changes made to resources in an AWS account, including changes made by IAM users, EC2 instances, AWS management console, and other AWS services. By using CloudTrail, the solutions architect can identify the IAM user who made the configuration changes to the security group rules.
 
 ## Config ##
 Assess, audits, and evaluates the configuration and relationships of tag resources.
@@ -294,6 +309,7 @@ You can use AWS Lambda and Amazon EventBridge to schedule a Lambda function to s
 
 ## Elastic File System ##
 EFS is a managed elastic file system designed for use across different machines and availability zones, 
+Supports POSIX.
 
 ## Elastic Block Store ##
 EBS is designed as a fast and reliable block storage volume for single machines
@@ -479,7 +495,12 @@ Are one of the resource-based options that you can use to manage access to your 
 
 ## Security Groups ##
 AWS Security Groups help you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With Security Groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols.
-Cannot set inbounr rules in a security group.
+
+The rules of a security group control the inbound traffic that's allowed to reach the resources that are associated with the security group. The rules also control the outbound traffic that's allowed to leave them.
+
+You can add or remove rules for a security group (also referred to as authorizing or revoking inbound or outbound access). A rule applies either to inbound traffic (ingress) or outbound traffic (egress). You can grant access to a specific source or destination.
+
+![Security Group](/images/security-group.png)
 
 ## Classless Inter-Domain Routing (CIDR) ##
 Is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
@@ -517,11 +538,17 @@ Is a fully managed S3 storage analytics solution that provides a comprehensive v
 Is used to specify the encryption method that should be used to encrypt objects uploaded to an Amazon S3 bucket. By updating the bucket policy to deny if the PutObject does not have this header set, the solutions architect can ensure that all objects uploaded to the bucket are encrypted.
 
 ## AWS Step Functions ##
-Lets you orchestrate multiple AWS services into serverless workflows so that you can build and update applications quickl
+Lets you orchestrate multiple AWS services into serverless workflows so that you can build and update applications quickly
 One of the use cases for step functions is to Automate extract, transform, and load (ETL) processes.
 
 ## AWS Batch ##
 Helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
+
+# Lambda #
+AWS Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you.
+
+## Provisioned concurrency ##
+Provisioned concurrency initializes a requested number of execution environments so that they are prepared to respond immediately to your function's invocations. Note that configuring provisioned concurrency incurs charges to your AWS account.
 
 ## Lambdaa@Edge function ##
 Using a Lambda@Edge function with an external image management library is the best solution to resize the images dynamically and serve appropriate formats to clients. Lambda@Edge is a serverless computing service that allows running custom code in response to CloudFront events, such as viewer requests and origin requests. By using a Lambda@Edge function, it's possible to process images on the fly and modify the CloudFront response before it's sent back to the client. Additionally, Lambda@Edge has built-in support for external libraries that can be used to process images. This approach will reduce operational overhead and scale automatically with traffic.
@@ -535,14 +562,39 @@ Is a horizontally scaled, redundant VPC endpoint that provides private connectiv
 ## Automated backups ##
 Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
 
+## A transit gateway ##
+Is a network transit hub that you can use to interconnect your virtual private clouds (VPCs) and on-premises networks. As your cloud infrastructure expands globally, inter-Region peering connects transit gateways together using the AWS Global Infrastructure.
 
+## Amazon EC2 Lifecycle hooks to your Auto Scaling groups ##
+ Amazon EC2 Auto Scaling offers the ability to add lifecycle hooks to your Auto Scaling groups. These hooks let you create solutions that are aware of events in the Auto Scaling instance lifecycle, and then perform a custom action on instances when the corresponding lifecycle event occurs.
 
+## EBS Encryption ##
+Creating a KMS key policy that enforces EBS encryption does not automatically encrypt EBS volumes. You need to create encrypted EBS volumes and attach them to EC2 instances to ensure that all data written to the volumes are encrypted at rest.
+Amazon EBS encryption as a straight-forward encryption solution for your EBS resources associated with your EC2 instances. With Amazon EBS encryption, you aren't required to build, maintain, and secure your own key management infrastructure.
+Amazon EBS encryption uses AWS KMS keys when creating encrypted volumes and snapshots.
+Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data-at-rest and data-in-transit between an instance and its attached EBS storage.
+You can attach both encrypted and unencrypted volumes to an instance simultaneously.
 
+## EBS volumes ##
+An Amazon EBS volume is a durable, block-level storage device that you can attach to your instances. After you attach a volume to an instance, you can use it as you would use a physical hard drive. EBS volumes are flexible. For current-generation volumes attached to current-generation instance types, you can dynamically increase size, modify the provisioned IOPS capacity, and change volume type on live production volumes.
 
+## Amazon Simple Email Service (Amazon SES) ##
+Lets you reach customers confidently without an on-premises Simple Mail Transfer Protocol (SMTP) email server using the Amazon SES API or SMTP interface.
 
+## Service control policies (SCPs) ##
+Are a type of organization policy that you can use to manage permissions in your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization.
 
+## Elastic Container Services ##
+microservices
 
+## GP Volumens ##
+Gp3 $ 0.08 usd per gb
+Gp2 $ 0.10 usd per gb
+Both GP2 and GP3 has max IOPS 16000 but GP3 is cost effective.
 
+## ElastiCache Redis ##
+Supports sorting and ranking operations needed for the top 10 leaderboard.
+The cached leaderboard can be retrieved from Redis 
 
 
 
