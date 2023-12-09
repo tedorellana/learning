@@ -79,6 +79,7 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 
 ## AWS Secrets Manager ##
 - Is a secrets management service that helps you protect access to your applications, services, and IT resources
+- Used for credentials.
 
 ## Amazon CloudFront ##
 Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users.
@@ -98,6 +99,9 @@ Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over
 - Is 5x performance improvement over MySQL on RDS and handles more read requests than write.
 - Aurora provides up to five times better latency than RDS and can scale up to ten times more packed operations per second than MySQL engine in RDS. It also offers an encrypted storage option for better data security
 
+## Lake Formation ##
+Can be used to create and manage the data lake's metadata and enforce security and governance policies, including column-level access control. This solution then uses Amazon Athena as the data source in QuickSight to query the data in the S3 data lake. This solution minimizes operational overhead by leveraging AWS services to manage and secure the data, and by using a standard query service (Amazon Athena) to provide a SQL interface to the data.
+
 ## The warm standby approach ##
 Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
 
@@ -110,8 +114,19 @@ Is a fully managed, open source, relational database that makes it easier to set
 ## AWS Network Firewall ##
 - Is a managed firewall service that provides filtering for both inbound and outbound network traffic. It allows you to create rules for traffic inspection and filtering, which can help protect your production VPC.
 
+## Amazon Inspector ##
+For automated security assessment. like known Vulnerability
+vulnerabilities = Amazon Inspector
+
 ## Amazon GuardDuty ##
-- Is a threat detection service, not a traffic inspection or filtering service.
+Is a threat detection service, not a traffic inspection or filtering service.
+malicious activity = Amazon GuardDuty
+
+## Amazon Detective ##
+Helps you analyze, investigate, and quickly identify the root cause of security findings or suspicious activities. Detective automatically collects log data from your AWS resources.
+
+## Amazon Macie ##
+Is a data security service that discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, and enables automated protection against those risks.
 
 ## Traffic Mirroring ##
 - Is a feature that allows you to replicate and send a copy of network traffic from a VPC to another VPC or on-premises location. It is not a service that performs traffic inspection or filtering.
@@ -143,6 +158,10 @@ You don't incur charges when the data warehouse is idle, so you only pay for wha
 - Support cross Availability zones.
 - Cheap than EBS
 - Expensive than S3
+
+## Amazon EBS Fast Snapshot Restore ##
+This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
+
 
 ## Amazon CloudFront ##
 - Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
@@ -201,6 +220,8 @@ With Kinesis Data Firehose, you don't need to write applications or manage resou
 
 ## Amazon Kinesis Data Streams ##
 Is a fully managed streaming data service. You can continuously add various types of data such as clickstreams, application logs, and social media to a Kinesis stream from hundreds of thousands of sources. Within seconds, the data will be available for your Kinesis Applications to read and process from the stream.
+Amazon Kinesis Data Streams can support ingestion rates as high as 1 MB/s and provide real-time data processing
+ensures minimal data loss in the event of an EC2 instance reboot since Kinesis Data Streams has a persistent data store for up to 7 days by default.
 
 ## Amazon Kinesis Data Analytics ##
 Enables you to quickly author SQL code that continuously reads, processes, and stores data in near real time. Using standard SQL queries on the streaming data, you can construct applications that transform and provide insights into your data.
@@ -220,6 +241,7 @@ A new capability that lets you replicate keys from one region into another. With
 
 ## AWS KMS keys (KMS keys) ##
 Are the primary resource in AWS KMS. You can use a KMS key to encrypt, decrypt, and re-encrypt data. It can also generate data keys that you can use outside of AWS KMS. Typically, you'll use symmetric encryption KMS keys, but you can create and use asymmetric KMS keys for encryption or signing, and create and use HMAC KMS keys to generate and verify HMAC tags.
+Used for encription keys.
 
 ## An AWS KMS key ##
 Is a logical representation of a cryptographic key. A KMS key contains metadata, such as the key ID, key spec, key usage, creation date, description, and key state. Most importantly, it contains a reference to the key material that is used when you perform cryptographic operations with the KMS key.
@@ -256,9 +278,6 @@ Is a network service that allows you to establish a dedicated network connection
 - Enable Cross-Region Replication of objects.
 - Enable MFA delete to require multi-factor authentication (MFA) when deleting an object version.
 
-## Amazon Macie ##
-Is a data security service that discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, and enables automated protection against those risks.
-
 ## Patch Manager ##
 The primary focus of Patch Manager, a capability of AWS Systems Manager, is on installing operating systems security-related updates on managed nodes. By default, Patch Manager doesn't install all available patches, but rather a smaller set of patches focused on security. (Ref https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-how-it-works-selection.html)
 
@@ -281,6 +300,7 @@ Blocks permanent object deletion during a customer-defined retention period so t
 
 ## Amazon FSx for Windows File Server ##
 Provides fully managed Microsoft Windows file servers, backed by a fully native Windows file system. FSx for Windows File Server has the features, performance, and compatibility to easily lift and shift enterprise applications to the AWS Cloud.
+SMB.
 
 ## Amazon FSx File Gateway (FSx File Gateway) ##
 Is a new File Gateway type that provides low latency and efficient access to in-cloud FSx for Windows File Server file shares from your on-premises facility
@@ -452,10 +472,11 @@ Allows you to distribute traffic across multiple EC2 instances, it does not ensu
 ![Amazon Route 53](/images/amazon-route-53.png)
 
 ## Access control lists (ACLs) ##
-Are one of the resource-based options (see Overview of managing access) that you can use to manage access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other AWS accounts.
+Are one of the resource-based options that you can use to manage access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other AWS accounts.
 
 ## Security Groups ##
 AWS Security Groups help you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With Security Groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols.
+Cannot set inbounr rules in a security group.
 
 ## Classless Inter-Domain Routing (CIDR) ##
 Is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
@@ -480,6 +501,45 @@ The cluster consists of one writer instance, plus two read-only replica instance
 ## Amazon FSx for NetApp ONTAP ##
 Is when you need to move workloads running on NetApp or other NFS/SMB/iSCSI servers to AWS without modifying application code or how you manage data.
 Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's popular ONTAP file system.
+
+## AWS Storage Gateway ##
+Connects on-premises environments with cloud storage through cached volumes, stored volumes and tape-based backup.
+SMB.
+AWS Storage Gateway Volume Gateway provides two configurations for connecting to iSCSI storage, namely, stored volumes and cached volumes. The stored volume configuration stores the entire data set on-premises and asynchronously backs up the data to AWS. The cached volume configuration stores recently accessed data on-premises, and the remaining data is stored in Amazon S3.
+
+## S3 Storage Lens ##
+Is a fully managed S3 storage analytics solution that provides a comprehensive view of object storage usage, activity trends, and recommendations to optimize costs. Storage Lens allows you to analyze object access patterns across all of your S3 buckets and generate detailed metrics and reports.
+
+## The x-amz-server-side-encryption header ##
+Is used to specify the encryption method that should be used to encrypt objects uploaded to an Amazon S3 bucket. By updating the bucket policy to deny if the PutObject does not have this header set, the solutions architect can ensure that all objects uploaded to the bucket are encrypted.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
