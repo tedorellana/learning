@@ -535,7 +535,7 @@ Is a horizontally scaled, redundant VPC endpoint that provides private connectiv
 ## Automated backups ##
 Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
 
-https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/8/
+
 
 
 
