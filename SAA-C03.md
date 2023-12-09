@@ -145,6 +145,9 @@ You don't incur charges when the data warehouse is idle, so you only pay for wha
 ## IAM Role ## 
 - Could be used to grant access to an EC2 Intance.
 
+## IAM policies ##
+You can't specify the principal in an identity-based policy because it applies to the user or role to which it is attached
+
 ## Gateway Load Balancer endpoint ##
 - Is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC.
 
@@ -513,14 +516,26 @@ Is a fully managed S3 storage analytics solution that provides a comprehensive v
 ## The x-amz-server-side-encryption header ##
 Is used to specify the encryption method that should be used to encrypt objects uploaded to an Amazon S3 bucket. By updating the bucket policy to deny if the PutObject does not have this header set, the solutions architect can ensure that all objects uploaded to the bucket are encrypted.
 
+## AWS Step Functions ##
+Lets you orchestrate multiple AWS services into serverless workflows so that you can build and update applications quickl
+One of the use cases for step functions is to Automate extract, transform, and load (ETL) processes.
 
+## AWS Batch ##
+Helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
 
+## Lambdaa@Edge function ##
+Using a Lambda@Edge function with an external image management library is the best solution to resize the images dynamically and serve appropriate formats to clients. Lambda@Edge is a serverless computing service that allows running custom code in response to CloudFront events, such as viewer requests and origin requests. By using a Lambda@Edge function, it's possible to process images on the fly and modify the CloudFront response before it's sent back to the client. Additionally, Lambda@Edge has built-in support for external libraries that can be used to process images. This approach will reduce operational overhead and scale automatically with traffic.
 
+## "aws:SecureTransport" condition on the bucket policy ##
+Ensures that all connections to the S3 bucket are encrypted in transit.
 
+## Interface endpoint ##
+Is a horizontally scaled, redundant VPC endpoint that provides private connectivity to a service. It is an elastic network interface with a private IP address that serves as an entry point for traffic destined to the AWS service. Interface endpoints are used to connect VPCs with AWS services
 
+## Automated backups ##
+Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
 
-
-
+https://www.examtopics.com/exams/amazon/aws-certified-solutions-architect-associate-saa-c03/view/8/
 
 
 
