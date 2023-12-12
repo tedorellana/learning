@@ -142,6 +142,9 @@ Is a fully managed, open source, relational database that makes it easier to set
 ## Amazon Relational Database Service (Amazon RDS) ## 
 - Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
 
+## Amazon RDS proxy ##
+Allows you to automatically route write request to the healthy writer, minimizing downtime.
+
 ## AWS Network Firewall ##
 - Is a managed firewall service that provides filtering for both inbound and outbound network traffic. It allows you to create rules for traffic inspection and filtering, which can help protect your production VPC.
 
@@ -561,6 +564,11 @@ A Multi-AZ deployment is a good choice for a small production application.  Howe
 The Multi-AZ RDS cluster consists of three DB instances, each in separate availability zones. This configuration provides high availability and failover support in addition to scaling to support high read loads. 
 The cluster consists of one writer instance, plus two read-only replica instances known as readers.
 
+Not available for:
+  - RDS for MariaDB
+  - RDS for Oracle
+  - RDS for SQL Server
+
 ## Amazon FSx for NetApp ONTAP ##
 Is when you need to move workloads running on NetApp or other NFS/SMB/iSCSI servers to AWS without modifying application code or how you manage data.
 Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's popular ONTAP file system.
@@ -634,7 +642,11 @@ Both GP2 and GP3 has max IOPS 16000 but GP3 is cost effective.
 
 ## ElastiCache Redis ##
 Supports sorting and ranking operations needed for the top 10 leaderboard.
-The cached leaderboard can be retrieved from Redis 
+The cached leaderboard can be retrieved from Redis.
+Can handle string upon 512 MB.
+
+## ElastiCache Memcached ##
+Just can handle simple characters strings and string up to 1 MB
 
 ## AWS App2Container (A2C) ##
 Is a command line tool to help you lift and shift applications that run in your on-premises data centers or on virtual machines, so that they run in containers that are managed by Amazon ECS, Amazon EKS, or AWS App Runner.
@@ -668,12 +680,16 @@ Is a networking connection between two VPCs that enables you to route traffic be
 ## Elastic File System (EFS Replication) ##
 can replicate your file system data to another Region or within the same Region without requiring additional infrastructure or a custom process. Amazon EFS Replication automatically and transparently replicates your data to a second file system in a Region or AZ of your choice. You can use the Amazon EFS console, AWS CLI, and APIs to activate replication on an existing file system. EFS Replication is continual and provides a recovery point objective (RPO) and a recovery time objective (RTO) of minutes, helping you meet your compliance and business continuity goals.
 
+## Function URL ##
+Provides a direct invoke endpoint for the Lambda function.
+Is a dedicated HTTP(S) endpoint for your Lambda function.
+When you create a function URL, Lambda automatically generates a unique URL endpoint for you.
 
+## Enable EKS ##
+Secrets encryption using that KMS key on the EKS cluster. This will encrypt secrets in the Kubernetes etcd store.
 
-
-
-
-
+## AWS Elastic Disaster Recovery (AWS DRS) ##
+Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
 
 
 
