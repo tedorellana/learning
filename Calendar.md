@@ -27,8 +27,8 @@ Calendar:
 12-07: 2 hrs    - 440 questions -   275 questions   -            [275]      - 41.25 %
 12-08: 2 hrs    - 530 questions -   375 questions   - (*)        [371]      - 55.65 %
 12-09: 2 hrs    - code practice -   475 questions   - (X)        [475]      - 71.25 %
-12-10: 2 hrs    - code practice -   500 questions   - (X ?)      [500]      - 75.00 %
-12-11: 2 hrs    - 565 questions -   552 questions   -            [Pending]  - ??.?? %
+12-10: 2 hrs    - code practice -   500 questions   - (X)        [500]      - 75.00 %
+12-11: 2 hrs    - 565 questions -   552 questions   -            [520]      - 78.00 %
 12-12: 2 hrs    - 600 questions -   604 questions   -            [Pending]  - ??.?? %
 12-13: 2 hrs    - 635 questions -   656 questions   - (review)   [Pending]  - ??.?? %
 ***************************************************************************************
@@ -39,4 +39,6 @@ Calendar:
 12-18: 2 hrs    - 100 questions -   100 questions   - (review)   [Pending]
 12-19: Test day
 
-Review:  #367
+Review:  
+367
+515
