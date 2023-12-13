@@ -11,8 +11,9 @@
 - Is a virtual network that closely resembles a traditional network that you'd operate in your own data center. After you create a VPC, you can add subnets.
 
 ### VPC Endpoints ###
-- Allows to connect to AWS services using a private network instead using the public internet.
-Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections. It allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
+Allows to connect to AWS services using a private network instead using the public internet.
+Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections.
+Allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
 
 ## Virtual private gateway ##
 A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
