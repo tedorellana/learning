@@ -495,6 +495,19 @@ Is a service that helps you model and set up your AWS resources so that you can 
 ## Amazon Cognito ##
 It's a user directory, an authentication server, and an authorization service for OAuth 2.0 access tokens and AWS credentials. With Amazon Cognito, you can authenticate and authorize users from the built-in user directory, from your enterprise directory, and from consumer identity providers like Google and Facebook.
 
+## Cognito User pool ##
+Used to:
+- Design sign-up and sign-in webpages for your up.
+- Access and manage user data.
+- Track your user device, location, and IP Addresss, and adapt to sign-in request of different risk levels.
+- Use a customer authentication flow for your app.
+
+## Cognito Identity pool ##
+Used to:
+- Give your user access to AWS resources, such as an Amazon simple Storage Service (Amazon S3) bucket or an Amazon DynamoDB Table.
+- Generate temporray AWS credential for unauthenticated users.
+
+
 ## Amazon Pinpoint ## 
 Is an AWS service that you can use to engage with your customers across multiple messaging channels. You can use Amazon Pinpoint to send push notifications, in-app notifications, emails, text messages, voice messages, and messages over custom channels.
 
@@ -520,6 +533,16 @@ Lazy loading allows for stale data but doesn't fail with empty nodes. Write-thro
 
 # Amazon ROute 53 #
 Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises.
+
+## Active-active failover ##
+
+Use this failover configuration when you want all of your resources to be available the majority of the time. When a resource becomes unavailable, Route 53 can detect that it's unhealthy and stop including it when responding to queries.
+
+In active-active failover, all the records that have the same name, the same type (such as A or AAAA), and the same routing policy (such as weighted or latency) are active unless Route 53 considers them unhealthy. Route 53 can respond to a DNS query using any healthy record.
+
+## Active-passive failover ##
+
+Use an active-passive failover configuration when you want a primary resource or group of resources to be available the majority of the time and you want a secondary resource or group of resources to be on standby in case all the primary resources become unavailable. When responding to queries, Route 53 includes only the healthy primary resources. If all the primary resources are unhealthy, Route 53 begins to include only the healthy secondary resources in response to DNS queries.
 
 ## multivalue answer routing policy in Route 53 ## 
 Allows you to configure multiple values for a DNS record, and Route 53 responds to DNS queries with multiple random values. This enables the distribution of traffic randomly among the available EC2 instances.
@@ -577,6 +600,9 @@ Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reli
 Connects on-premises environments with cloud storage through cached volumes, stored volumes and tape-based backup.
 SMB.
 AWS Storage Gateway Volume Gateway provides two configurations for connecting to iSCSI storage, namely, stored volumes and cached volumes. The stored volume configuration stores the entire data set on-premises and asynchronously backs up the data to AWS. The cached volume configuration stores recently accessed data on-premises, and the remaining data is stored in Amazon S3.
+
+## With its virtual tape library (VTL) interface (iSCSI) ##
+You use your existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on your Tape Gateway. Each Tape Gateway is preconfigured with a media changer and tape drives.
 
 ## S3 Storage Lens ##
 Is a fully managed S3 storage analytics solution that provides a comprehensive view of object storage usage, activity trends, and recommendations to optimize costs. Storage Lens allows you to analyze object access patterns across all of your S3 buckets and generate detailed metrics and reports.
@@ -690,6 +716,45 @@ Secrets encryption using that KMS key on the EKS cluster. This will encrypt secr
 
 ## AWS Elastic Disaster Recovery (AWS DRS) ##
 Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
+
+## AWS Amplify ##
+Is a set of purpose-built tools and features that enables frontend web and mobile developers to quickly and easily build full-stack applications on AWS. Amplify provides two services: Amplify Hosting and Amplify Studio.
+
+## Signed URL ##
+Includes additional information, for example, an expiration date and time, that gives you more control over access to your content. This additional information appears in a policy statement, which is based on either a canned policy or a custom policy.
+
+## Canary Release ##
+A canary release is a deployment strategy whereby changes are initially released to a small subset of users.
+The system is then carefully monitored for signs of trouble, using both business KPIs and operational metrics. Once you’re confident that your changes have not adversely impacted functionality, performance or security, you can roll out the changes to remaining users either in further increments or all at once.
+The initial group of users that receive the update act as the metaphorical canaries in a coalmine; if an issue is detected following the release, the damage is limited to them. Most of your users, therefore, remain unaware and unaffected. Canary releases are useful when deploying high-risk changes that cannot be adequately tested in staging environments.
+For web-based systems, implementing a canary release involves hosting two versions of your product, controlling the traffic routed to each, and proactively monitoring the health of both.
+For installed products, you can make a new version available to a subset of users. Still, you have less control over when they apply the update, so it can take longer to determine whether your changes are ready to be released more widely.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
