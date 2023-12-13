@@ -390,17 +390,18 @@ Is the maximum acceptable time that an application, computer, network, or system
 ## Recovery point objective (RPO) ###
 Is defined as the maximum amount of data – as measured by time – that can be lost after a recovery from a disaster, failure, or comparable event before data loss will exceed what is acceptable to an organization.
 
+## Amazon DynamoDB ##
+Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
+DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
+DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
+Using DynamoDB's global tables feature, you can achieve a globally consistent reservation database with low latency on updates, making it suitable for serving a global user base. The automatic replication provided by DynamoDB eliminates the need for manual synchronization between Regions.
+
 ## Amazon DynamoDB point-in-time recovery ## 
 Enables you to back up your table data continuously by using point-in-time recovery (PITR). When you enable PITR, DynamoDB backs up your table data automatically with per-second granularity so that you can restore to any given second in the preceding 35 days
 
 ## AWS DataSync ##
 Is a fully managed data transfer service that simplifies, automates, and accelerates transferring data between on-premises storage systems and Amazon S3, Amazon EFS, or Amazon FSx for Windows File Server.
 Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
-
-## Amazon DynamoDB ##
-Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
-DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
-DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
 
 ## DAX stands for DynamoDB Accelerator ## 
 It's like a turbo boost for your DynamoDB tables. It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
@@ -565,6 +566,10 @@ The rules of a security group control the inbound traffic that's allowed to reac
 
 You can add or remove rules for a security group (also referred to as authorizing or revoking inbound or outbound access). A rule applies either to inbound traffic (ingress) or outbound traffic (egress). You can grant access to a specific source or destination.
 
+Security groups act at the network interface level, not the subnet level, and they support Allow rules only.
+
+Security group rules are always permissive; you can't create rules that deny access.
+
 ![Security Group](/images/security-group.png)
 
 ## Classless Inter-Domain Routing (CIDR) ##
@@ -636,7 +641,7 @@ Is a horizontally scaled, redundant VPC endpoint that provides private connectiv
 ## Automated backups ##
 Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
 
-## A transit gateway ##
+## Transit gateway ##
 Is a network transit hub that you can use to interconnect your virtual private clouds (VPCs) and on-premises networks. As your cloud infrastructure expands globally, inter-Region peering connects transit gateways together using the AWS Global Infrastructure.
 
 ## Amazon EC2 Lifecycle hooks to your Auto Scaling groups ##
@@ -705,6 +710,9 @@ Is a networking connection between two VPCs that enables you to route traffic be
 
 ## Elastic File System (EFS Replication) ##
 can replicate your file system data to another Region or within the same Region without requiring additional infrastructure or a custom process. Amazon EFS Replication automatically and transparently replicates your data to a second file system in a Region or AZ of your choice. You can use the Amazon EFS console, AWS CLI, and APIs to activate replication on an existing file system. EFS Replication is continual and provides a recovery point objective (RPO) and a recovery time objective (RTO) of minutes, helping you meet your compliance and business continuity goals.
+
+## AWS Service Catalog ##
+Allows you to create and manage catalogs of IT services that can be deployed within your organization. With Service Catalog, you can define a standardized set of products (solutions and tools in this case) that customers can self-service provision. By creating Service Catalog products, you can control and enforce the deployment of approved and validated solutions and tools.
 
 ## Function URL ##
 Provides a direct invoke endpoint for the Lambda function.
