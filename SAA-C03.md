@@ -75,7 +75,8 @@ Is for data that is accessed less frequently, but requires rapid access when nee
 ### Amazon Elastic File System (EFS) ###
 - Serverless, fully elastic file storage
 - Automatically grows and shrinks as you add and remove files with no need for management or provisioning.
-
+- Amazon EFS provides shared access to data using a traditional file sharing permissions model and hierarchical directory structure via the NFSv4 protocol. Applications that access data using a standard file system interface provided through the operating system can use Amazon EFS to take advantage of the scalability and reliability of file storage in the cloud without writing any new code or adjusting applications.
+- Hierarchical directory structure, read and write rapidly and concurrently to shared storage
 ##  S3 Lifecycle configuration ##
 Is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
 
@@ -209,8 +210,10 @@ This feature allows you to quickly create new EBS volumes (and subsequently AMIs
 
   - If the content is not in that edge location, CloudFront retrieves it from an origin that you've defined—such as an Amazon S3 bucket, a MediaPackage channel, or an HTTP server (for example, a web server) that you have identified as the source for the definitive version of your content.
 
-## S3 Intelligent-Tiering ##
+## Amazon S3 ##
+Is an object storage platform that uses a simple API for storing and accessing data. Applications that do not require a file system structure and are designed to work with object storage can use Amazon S3 as a massively scalable, durable, low-cost object storage solution.
 
+## S3 Intelligent-Tiering ##
 - Amazon S3 Intelligent Tiering is a storage class that automatically moves data to the most cost-effective storage tier based on access patterns. It can store objects in two access tiers: the frequent access tier and the infrequent access tier. The frequent access tier is optimized for frequently accessed objects and is charged at the same rate as S3 Standard. The infrequent access tier is optimized for objects that are not accessed frequently and are charged at a lower rate than S3 Standard.
 - S3 Intelligent Tiering is a good choice for storing media files that are accessed frequently and infrequently in an unpredictable pattern because it automatically moves data to the most cost-effective storage tier based on access patterns, minimizing storage and retrieval costs. It is also resilient to the loss of an Availability Zone because it stores objects in multiple Availability Zones within a region.
 
@@ -226,7 +229,7 @@ This feature allows you to quickly create new EBS volumes (and subsequently AMIs
 - Provides a summarised view of spending i.e. what you spent so far this month, and the predicted end of month bill, this is quite static and gives you a high level overview of spending. In addition you can configure your billing details from here. All of these features are free to use with no charge for accessing the interface.
 
 ## AWS Config ##
-- Helps you record configuration changes to software within EC2 instances in your AWS account and also virtual machines (VMs) or servers in your on-premises environment. The configuration information recorded by AWS Config includes Operating System updates, network configuration, and installed applications.
+Helps you record configuration changes to software within EC2 instances in your AWS account and also virtual machines (VMs) or servers in your on-premises environment. The configuration information recorded by AWS Config includes Operating System updates, network configuration, and installed applications.
 
 # CloudWatch #
 - Is a monitoring and management service that provides data and actionable insights for AWS, on-premises, hybrid, and other cloud applications and infrastructure resources.
@@ -404,7 +407,8 @@ Is a fully managed data transfer service that simplifies, automates, and acceler
 Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
 
 ## DAX stands for DynamoDB Accelerator ## 
-It's like a turbo boost for your DynamoDB tables. It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
+It's like a turbo boost for your DynamoDB tables.
+It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
 
 ## AWS Backup ##
 Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
@@ -696,8 +700,55 @@ When you create a function URL, Lambda automatically generates a unique URL endp
 ## Enable EKS ##
 Secrets encryption using that KMS key on the EKS cluster. This will encrypt secrets in the Kubernetes etcd store.
 
+## Amazon EKS Connector ##
+To register and connect any conformant Kubernetes cluster to AWS and visualize it in the Amazon EKS console.
+
 ## AWS Elastic Disaster Recovery (AWS DRS) ##
 Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
+
+## AWS Control Tower ##
+Offers the easiest way to set up and govern a secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and it enables governance using controls you can choose from a pre-packaged list.
+
+## Identifying and resolving drift ##
+is a regular operations task for AWS Control Tower management account administrators. Resolving drift helps to ensure your compliance with governance requirements.
+When you create your landing zone, the landing zone and all the organizational units (OUs), accounts, and resources are compliant with the governance rules enforced by your chosen controls. As you and your organization members use the landing zone, changes in this compliance status may occur. Some changes may be accidental, and some may be made intentionally to respond to time-sensitive operational events.
+Drift detection assists you in identifying resources that need changes or configuration updates to resolve the drift.
+
+## Route table ## 
+Is a set of rules that determines where network traffic is directed. Each subnet in your AWS VPC is associated with a route table which controls the traffic flow between subnets.
+
+## Server-side encryption ##
+Amazon S3 supports encryption at rest with three mutually exclusive server-side encryption options. Amazon S3 encrypts your data at the object level as it writes it to disks in its data centers and decrypts it for you when you access it.
+
+## Client-side encryption ##
+Where you encrypt your objects before you send them to Amazon S3. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
