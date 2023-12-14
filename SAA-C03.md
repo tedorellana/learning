@@ -97,6 +97,9 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 ## Amazon API Gateway ##
 - Is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud .
 
+## Edge-optimized API endpoint ##
+Typically routes requests to the nearest CloudFront Point of Presence (POP), which could help in cases where your clients are geographically distributed. This is the default endpoint type for API Gateway REST APIs.
+
 ## AWS Secrets Manager ##
 - Is a secrets management service that helps you protect access to your applications, services, and IT resources
 - Used for credentials.
@@ -127,6 +130,10 @@ A load balancer serves as the single point of contact for clients. The load bala
 - Better for read than write.
 - Is 5x performance improvement over MySQL on RDS and handles more read requests than write.
 - Aurora provides up to five times better latency than RDS and can scale up to ten times more packed operations per second than MySQL engine in RDS. It also offers an encrypted storage option for better data security
+- provides built-in security, continuous backups, serverless compute, up to 15 read replicas, automated multi-Region replication, and integrations with other AWS services.
+
+## Amazon Aurora Serverless ##
+Is an on-demand, auto-scaling configuration for Aurora where the database automatically starts up, shuts down, and scales capacity up or down based on your application's needs.
 
 ## Lake Formation ##
 Can be used to create and manage the data lake's metadata and enforce security and governance policies, including column-level access control. This solution then uses Amazon Athena as the data source in QuickSight to query the data in the S3 data lake. This solution minimizes operational overhead by leveraging AWS services to manage and secure the data, and by using a standard query service (Amazon Athena) to provide a SQL interface to the data.
@@ -456,6 +463,8 @@ Refers to the process of decrypting encrypted traffic before passing it along to
 
 ## A target tracking policy ##
 Allows the Auto Scaling group to automatically adjust the number of EC2 instances in the group based on a target value for a metric. In this case, the target value for the CPU utilization metric could be set to 40% to maintain the desired performance of the application. The Auto Scaling group would then automatically scale the number of instances up or down as needed to maintain the target value for the metric.
+Scaling policy assumes that it should scale out your Auto Scaling group when the specified metric is above the target value.
+You can't use a target tracking scaling policy to scale out your Auto Scaling group when the specified metric is below the target value
 
 ## Origin access identity ##
 Is a special CloudFront user that you can associate with Amazon S3 origins, so that you can secure all or just some of your Amazon S3 content.
@@ -763,12 +772,66 @@ The initial group of users that receive the update act as the metaphorical canar
 For web-based systems, implementing a canary release involves hosting two versions of your product, controlling the traffic routed to each, and proactively monitoring the health of both.
 For installed products, you can make a new version available to a subset of users. Still, you have less control over when they apply the update, so it can take longer to determine whether your changes are ready to be released more widely.
 
+## Lambda SnapStart ##
+Lambda SnapStart for Java can improve startup performance for latency-sensitive applications by up to 10x at no extra cost, typically with no changes to your function code. The largest contributor to startup latency (often referred to as cold start time) is the time that Lambda spends initializing the function, which includes loading the function's code, starting the runtime, and initializing the function code.
 
+## DNS Validation ##
+The Domain Name System (DNS) is a directory service for resources that are connected to a network. Your DNS provider maintains a database containing records that define your domain. When you choose DNS validation, ACM provides you with one or more CNAME records that must be added to this database. These records contain a unique key-value pair that serves as proof that you control the domain.
+For example, if you request a certificate for the example.com domain with www.example.com as an additional name, ACM creates two CNAME records for you. Each record, created specifically for your domain and your account, contains a name and a value. The value is an alias that points to an AWS domain that ACM uses to automatically renew your certificate. The CNAME records must be added to your DNS database only once. ACM automatically renews your certificate as long as the certificate is in use and your CNAME record remains in place.
 
+Note:
+ - After you create a certificate with email validation, you cannot switch to validating it with DNS.
 
+## The Instance Scheduler on AWS solution ##
+Automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Relational Database Service (Amazon RDS) instances. This solution helps reduce operational costs by stopping resources that are not in use and starting them when they are needed.
 
+## Lift and shift ##
+Also known as “rehosting,” 
+Is the process of migrating an exact copy of an application or workload, together with its data store and operating system (OS), from IT one environment to another—usually from on-premises to public or private cloud.
 
+## General Purpose SSD volumes include gp2 and gp3 types ##
+Both:
+- gp2 and gp3 can reach up to 16000 IOPS
+- Offer the same level of durability. 
+- Both can reach up to 16000 IOPS
 
+Differences:
+- Gp2 volumes reach a lower maximum throughput per volume (250 MiB/s) 
+- Gp3 volumes (1000 MiB/s).
+- Gp3 offers SSD-performance at a 20% lower cost per GB than gp2 volumes.
+
+# Routing policies #
+When you create a record, you choose a routing policy, which determines how Amazon Route 53 responds to queries:
+
+## Simple routing policy ##
+Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. You can use simple routing to create records in a private hosted zone.
+
+## Failover routing policy ##
+Use when you want to configure active-passive failover. You can use failover routing to create records in a private hosted zone.
+
+## Geolocation routing policy ##
+Use when you want to route traffic based on the location of your users. You can use geolocation routing to create records in a private hosted zone.
+
+## Geoproximity routing policy ##
+Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another location.
+
+## Latency routing policy ##
+Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency. You can use latency routing to create records in a private hosted zone.
+
+## IP-based routing policy ##
+Use when you want to route traffic based on the location of your users, and have the IP addresses that the traffic originates from.
+
+## Multivalue answer routing policy ##
+Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. You can use multivalue answer routing to create records in a private hosted zone.
+
+## Weighted routing policy ##
+Use to route traffic to multiple resources in proportions that you specify. You can use weighted routing to create records in a private hosted zone.
+
+## spread placement group ##
+Spread level placement groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time. If you start or launch an instance in a spread placement group and there is insufficient unique hardware to fulfill the request, the request fails.
+
+## Sticky sessions ##
+Also known as session persistence — is the method that makes it possible for the load balancer to identify requests coming from the same client and to always send those requests to the same server.
 
 
 
