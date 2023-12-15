@@ -78,6 +78,12 @@ Is for data that is accessed less frequently, but requires rapid access when nee
 - Automatically grows and shrinks as you add and remove files with no need for management or provisioning.
 - Amazon EFS provides shared access to data using a traditional file sharing permissions model and hierarchical directory structure via the NFSv4 protocol. Applications that access data using a standard file system interface provided through the operating system can use Amazon EFS to take advantage of the scalability and reliability of file storage in the cloud without writing any new code or adjusting applications.
 - Hierarchical directory structure, read and write rapidly and concurrently to shared storage
+- Store files without server
+- Pay just for the storage.
+- Support cross Availability zones.
+- Cheap than EBS
+- Expensive than S3
+
 ##  S3 Lifecycle configuration ##
 Is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
 
@@ -199,13 +205,6 @@ Can be directly attached to IAM groups too.
 ## Amazon Elastic Block Store (Amazon EBS) ##
 - Is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).
 - Expensive than S3 and EFS
-
-### Amazon Elastic File System ###
-- Store files without server
-- Pay just for the storage.
-- Support cross Availability zones.
-- Cheap than EBS
-- Expensive than S3
 
 ## Amazon EBS Fast Snapshot Restore ##
 This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
@@ -348,6 +347,19 @@ You can use AWS Lambda and Amazon EventBridge to schedule a Lambda function to s
 ## Elastic File System ##
 EFS is a managed elastic file system designed for use across different machines and availability zones, 
 Supports POSIX.
+Amazon EFS allows multiple Amazon EC2 instances to mount the same file system simultaneously, making it easy for multiple instances to access and modify the data concurrently.
+
+## Amazon Neptune ##
+Is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets. The core of Neptune is a purpose-built, high-performance graph database engine. This engine is optimized for storing billions of relationships and querying the graph with milliseconds latency. Neptune supports the popular property-graph query languages Apache TinkerPop Gremlin and Neo4j's openCypher, and the W3C's RDF query language, SPARQL. This enables you to build queries that efficiently navigate highly connected datasets. Neptune powers graph use cases such as recommendation engines, fraud detection, knowledge graphs, drug discovery, and network security.
+
+The Neptune database is highly available, with read replicas, point-in-time recovery, continuous backup to Amazon S3, and replication across Availability Zones. Neptune provides data security features, with support for encryption at rest and in transit. Neptune is fully managed, so you no longer need to worry about database management tasks like hardware provisioning, software patching, setup, configuration, or backups.
+
+## Amazon Quantum Ledger Database (Amazon QLDB) ##
+Amazon Quantum Ledger Database (QLDB) is a purpose-built ledger database that provides a complete and cryptographically verifiable history of all changes made to your application data.
+Traditional databases allow you to overwrite or delete data, so developers use techniques such as audit tables and audit trails to help track data lineage. While these approaches can work, they require custom development, can be difficult to scale, and put the onus on the application developer to ensure all the right data is being recorded. Data in Amazon QLDB is written to an append-only journal, providing the developer with full data lineage. Moreover, data in Amazon QLDB's journal is immutable and verifiable, meaning you can trust the data in your ledger.
+
+What data should I store in a ledger database?
+Amazon QLDB's features make it a natural fit for system-of-record applications – those for which data integrity, completeness, and verifiability are critical. For example, in the supply chain and logistics space, an application built on Amazon QLDB would have the entire history of changes, such as movement between carriers and across borders, available for query and analysis. In finance, system-of-record applications track critical data, such as credit and debit transactions. Instead of building complex record keeping functionality within their application, banks can use QLDB to easily store a permanent and complete record of all financial transactions.
 
 ## Elastic Block Store ##
 EBS is designed as a fast and reliable block storage volume for single machines
@@ -385,7 +397,11 @@ Converts audio input into text, which opens the door for various text analytics 
 Is a fully managed machine learning service. With SageMaker, data scientists and developers can quickly and easily build and train machine learning models, and then directly deploy them into a production-ready hosted environment
 
 ## AWS Fargate ## 
-Is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
+Is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances.
+With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
+
+## Amazon Elastic Container Service (Amazon ECS) ##
+Is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications. As a fully managed service, Amazon ECS comes with AWS configuration and operational best practices built-in. It's integrated with both AWS and third-party tools, such as Amazon Elastic Container Registry and Docker. This integration makes it easier for teams to focus on building the applications, not the environment. You can run and scale your container workloads across AWS Regions in the cloud, and on-premises, without the complexity of managing a control plane.
 
 ## ChangeMessageVisibility ##
 In case of SQS - multi-consumers if one consumer has already picked the message and is processing, in meantime other consumer can pick it up and process the message there by two copies are added at the end. To avoid this the message is made invisible from the time its picked and deleted after processing. This visibility timeout is increased according to max time taken to process the message
@@ -406,6 +422,8 @@ Is a fully managed NoSQL database service that provides fast and predictable per
 DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
 DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
 Using DynamoDB's global tables feature, you can achieve a globally consistent reservation database with low latency on updates, making it suitable for serving a global user base. The automatic replication provided by DynamoDB eliminates the need for manual synchronization between Regions.
+Keywoards: key-value data
+
 
 ## Amazon DynamoDB point-in-time recovery ## 
 Enables you to back up your table data continuously by using point-in-time recovery (PITR). When you enable PITR, DynamoDB backs up your table data automatically with per-second granularity so that you can restore to any given second in the preceding 35 days
@@ -500,9 +518,12 @@ Allows you to enable your users to securely upload sensitive information to your
 
 ## AWS Transfer Family ##
 Securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
+By configuring AWS Transfer Family SFTP endpoints, you can provide a secure and convenient way for employees to access and transfer data to and from the S3 bucket.
+Using custom identity provider options allows you to integrate with existing identity systems, and AWS Secrets Manager can be used to manage user credentials securely.
 
 ## Elastic Beanstalk ##
-With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+You can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications.
+Reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
 
 ## AWS CloudFormation ##
 Is a service that helps you model and set up your AWS resources so that you can spend less time managing those resources and more time focusing on your applications that run in AWS. You create a template that describes all the AWS resources that you want (like Amazon EC2 instances or Amazon RDS DB instances), and CloudFormation takes care of provisioning and configuring those resources for you. You don't need to individually create and configure AWS resources and figure out what's dependent on what; CloudFormation handles that. The following scenarios demonstrate how CloudFormation can help.
@@ -630,11 +651,47 @@ Is a fully managed S3 storage analytics solution that provides a comprehensive v
 Is used to specify the encryption method that should be used to encrypt objects uploaded to an Amazon S3 bucket. By updating the bucket policy to deny if the PutObject does not have this header set, the solutions architect can ensure that all objects uploaded to the bucket are encrypted.
 
 ## AWS Step Functions ##
-Lets you orchestrate multiple AWS services into serverless workflows so that you can build and update applications quickly
+Lets you orchestrate multiple AWS services into serverless workflows so that you can build and update applications quickly.
 One of the use cases for step functions is to Automate extract, transform, and load (ETL) processes.
+
+## AWS Step Functions  Map #
+Use the Map state to run a set of workflow steps for each item in a dataset. 
+The Map state's iterations run in parallel, which makes it possible to process a dataset quickly.
+Map states can use a variety of input types, including a JSON array, a list of Amazon S3 objects, or a CSV file.
+
+Step Functions provides two types of processing modes for using the Map state in your workflows: Inline mode and Distributed mode.
+
+### Inline mode ###
+By default, Map states runs in Inline mode. In Inline mode, the Map state accepts only a JSON array as input. It receives this array from a previous step in the workflow. In this mode, each iteration of the Map state runs in the context of the workflow that contains the Map state. Step Functions adds the execution history of these iterations to the parent workflow's execution history.
+
+In this mode, the Map state supports up to 40 concurrent iterations.
+
+A Map state set to Inline is known as an Inline Map state. Use the Map state in Inline mode if your workflow's execution history won't exceed 25,000 entries, or if you don't require more than 40 concurrent iterations.
+
+### Distributed ###
+You can orchestrate large-scale parallel workloads to perform tasks, such as on-demand processing of semi-structured data. These parallel workloads let you concurrently process large-scale data sources stored in Amazon S3. For example, you might process a single JSON or CSV file that contains large amounts of data. Or you might process a large set of Amazon S3 objects.
+
+To set up a large-scale parallel workload in your workflows, include a Map state in Distributed mode. The Map state processes items in a dataset concurrently. A Map state set to Distributed is known as a Distributed Map state. In Distributed mode, the Map state allows high-concurrency processing. In Distributed mode, the Map state processes the items in the dataset in iterations called child workflow executions. You can specify the number of child workflow executions that can run in parallel. Each child workflow execution has its own, separate execution history from that of the parent workflow. If you don't specify, Step Functions runs 10,000 parallel child workflow executions in parallel.
+
+The following illustration explains how you can set up large-scale parallel workloads in your workflows.
+![Step Functions Parallel Execution](images/step-functions-parallel.png)
 
 ## AWS Batch ##
 Helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
+AWS Backup automates backup of resources like EBS volumes. It allows defining backup policies for groups of resources. This removes the need to manually create backups for each resource.
+
+## AWS Backup API and CLI ##
+Allow programmatic control of backup plans and restores. This enables restoring hundreds of EC2 instances programmatically after a disaster instead of manually.
+
+## The AWS Command Line Interface (AWS CLI) ##
+Is an open source tool from Amazon Web Services (AWS). You can use it to interact with AWS services using commands in your command line shell.
+
+With minimal configuration, you can use the AWS CLI to  commands that implement functionality equivalent to that provided by the browser-based AWS Management Console. Here’s what you can do from the command prompt in your terminal program:
+
+Use common Linus shell programs such as Bash, zsh, and tcsh to run commands in Linux or macOS.
+Run commands on Windows at the Windows command prompt or in PowerShell.
+Remotely run commands on Amazon Elastic Compute Cloud (Amazon EC2) instances through a remote terminal program such as PuTTY, SSH, or with AWS Systems Manager.
+Using AWS CloudShell, a browser-based shell, you can quickly run scripts with the AWS CLI, experiment with service APIs, and use other tools to increase your productivity. The CloudShell icon appears in AWS Regions where CloudShell is available.
 
 # Lambda #
 AWS Lambda is a serverless compute service that runs your code in response to events and automatically manages the underlying compute resources for you.
@@ -833,7 +890,25 @@ Spread level placement groups provide access to distinct hardware, and are there
 ## Sticky sessions ##
 Also known as session persistence — is the method that makes it possible for the load balancer to identify requests coming from the same client and to always send those requests to the same server.
 
+## Security Assertion Markup Language 2.0 (SAML) ""
+Is an open federation standard that allows an identity provider (IdP) to authenticate users and pass identity and security information about them to a service provider (SP), typically an application or service. With SAML, you can enable a single sign-on experience for your users across many SAML-enabled applications and services. Users authenticate with the IdP once using a single set of credentials, and then get access to multiple applications and services without additional sign-ins. Because SAML-enabled applications delegate authentication to an IdP, the SP can automatically grant, revoke, or change the scope of a user’s access to applications and services when an administrator adds, removes, or modifies the user’s information in the IdP.
 
+AWS provides distinct SAML solutions for authenticating your employees, contractors, and partners (workforce) to AWS accounts and business applications, and for adding SAML support to your customer-facing web and mobile applications. 
+
+##  Amazon RDS Blue/Green Deployments ##
+You can make and test database changes before implementing them in a production environment. A blue/green deployment creates a staging environment that copies the production environment. In a blue/green deployment, the blue environment is the current production environment. The green environment is the staging environment. The staging environment stays in sync with the current production environment using logical replication.
+
+You can make changes to the RDS DB instances in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version, upgrade the underlying file system configuration, or change database parameters in the staging environment. You can thoroughly test changes in the green environment. When ready, you can switch over the environments to promote the green environment to be the new production environment. The switchover typically takes under a minute with no data loss and no need for application changes.
+
+Because the green environment is a copy of the topology of the production environment, the green environment includes the features used by the DB instance. These features include the read replicas, the storage configuration, DB snapshots, automated backups, Performance Insights, and Enhanced Monitoring. If the blue DB instance is a Multi-AZ DB instance deployment, then the green DB instance is also a Multi-AZ DB instance deployment.
+
+## Auto scaling ##
+
+## on Demand scaling ##
+
+## Dynamo VS Aurora ##
+
+## cron job. ##
 
 
 
