@@ -1,52 +1,121 @@
-# AWS Certified Solutions Architect [SAA - C03] #
+# ***AWS Certified Solutions Architect [SAA - C03]*** #
 
-# AWS Organizations #
+# AWS Management #
+
+## AWS Organizations ##
 Is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. 
 
 Includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business.
 
 As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization.
 
-## Organization Unit ##
-Is a container of AWS accounts within a root of an organization. 
+### Organization Unit ###
+- Is a container of AWS accounts within a root of an organization.
+- Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
 
-Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
-
-# VPC (Amazon virtual Cloud) #
-Allows you to launch AWS resources in a logically isolated virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
-
-### VPC Endpoints ###
-Allows to connect to AWS services using a private network instead using the public internet.
-Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections.
-Allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
-
-
-
-
-### S3 Transfer Acceleration ###
-- Good for high speed
-- Designed to optimize transfer speeds from across the world into S3 buckets.
+### IAM Role ###
+- Could be used to grant access to an EC2 Intance.
+- Are not directly attached to IAM groups.
+  
+### IAM policies ###
+You can't specify the principal in an identity-based policy because it applies to the user or role to which it is attached
+Can be directly attached to IAM groups too.
 
 ### Principal OrgID ###
 - Validates if the principal accessing the resource is within your organization.
+---
 
-## Virtual private gateway ##
-A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
+# AWS Networking #
 
-## A VPC endpoint ##
-Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+## VPC (Amazon virtual Cloud) ##
+Allows you to launch AWS resources in a logically isolated virtual network that you've defined.
+
+This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
+
+![VPC](/images/vpc.png)
+
+### VPC Endpoints ###
+- Allows to connect to AWS services using a private network instead using the public internet.
+- Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections.
+- Allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
 
 ## VPC and subnets overview ##
 The following diagram provides an overview of the resources included in this example. The VPC has public subnets and private subnets in two Availability Zones. Each public subnet contains a NAT gateway and a load balancer node. The servers run in the private subnets, are launched and terminated by using an Auto Scaling group, and receive traffic from the load balancer. The servers can connect to the internet by using the NAT gateway. The servers can connect to Amazon S3 by using a gateway VPC endpoint.
 
 ![VPC Subnets Structure Overview](/images/vpc-subnets-structure-overview.png)
 
-### Elastic Block Store ###
+---
+
+# AWS Storage Services #
+Storage as a Service (StaaS) is a way for organizations to manage storage capacity and workloads without the overhead costs of upfront capital for storage hardware and software or staff time
+
+## Amazon Simple Storage Service (S3) ##
+An object storage service offering industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can store and protect any amount of data for virtually any use case, such as data lakes, cloud-native applications, and mobile apps. With cost-effective storage classes and easy-to-use management features, you can optimize costs, organize data, and configure fine-tuned access controls to meet specific business, organizational, and compliance requirements.
+
+![S3](/images/S3.png)
+
+### S3 Transfer Acceleration ###
+- Good for high speed
+- Designed to optimize transfer speeds from across the world into S3 buckets.
+
+###  S3 Lifecycle configuration ###
+Is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
+
+## Amazon Elastic File System (EFS) ##
+- Serverless, fully elastic file storage
+- Automatically grows and shrinks as you add and remove files with no need for management or provisioning.
+- Amazon EFS provides shared access to data using a traditional file sharing permissions model and hierarchical directory structure via the NFSv4 protocol. Applications that access data using a standard file system interface provided through the operating system can use Amazon EFS to take advantage of the scalability and reliability of file storage in the cloud without writing any new code or adjusting applications.
+- Hierarchical directory structure, read and write rapidly and concurrently to shared storage
+- Store files without server
+- Pay just for the storage.
+- Support cross Availability zones.
+- Cheap than EBS
+- Expensive than S3
+
+## Amazon FSX ##
+Amazon FSx makes it easy and cost effective to launch, run, and scale feature-rich, high-performance file systems in the cloud. It supports a wide range of workloads with its reliability, security, scalability, and broad set of capabilities. Amazon FSx is built on the latest AWS compute, networking, and disk technologies to provide high performance and lower TCO. And as a fully managed service, it handles hardware provisioning, patching, and backups -- freeing you up to focus on your applications, your end users, and your business.
+
+You can choose between four widely-used file systems: NetApp ONTAP, OpenZFS, Windows File Server, and Lustre.
+
+### Amazon FSx for Windows File Server ###
+Provides fully managed Microsoft Windows file servers, backed by a fully native Windows file system. FSx for Windows File Server has the features, performance, and compatibility to easily lift and shift enterprise applications to the AWS Cloud.
+SMB.
+
+### Amazon FSx for Lustre ###
+Is a fully managed file system that is designed for high-performance workloads, such as gaming applications. It provides a high-performance, scalable, and fully managed file system that is optimized for Lustre clients, and it is fully integrated with Amazon EC2. It is the only option that meets the requirements of being fully managed and able to support Lustre clients.
+Amazon FSx for Lustre is a fully managed, high-performance file system optimized for HPC workloads. It is designed to deliver sub-millisecond latencies and high throughput, making it ideal for applications that require parallel access to shared storage, such as simulations and data analytics
+
+### Amazon FSx for NetApp ONTAP ###
+Is when you need to move workloads running on NetApp or other NFS/SMB/iSCSI servers to AWS without modifying application code or how you manage data.
+Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's popular ONTAP file system.
+
+### Amazon FSx for OpenZFS ###
+Provides fully managed shared file storage built on the OpenZFS file system and accessible through the NFS protocol (v3, v4, v4.1, and v4.2).
+
+### Amazon FSx File Gateway (FSx File Gateway) ###
+Is a new File Gateway type that provides low latency and efficient access to in-cloud FSx for Windows File Server file shares from your on-premises facility
+
+
+## Amazon Elastic Block Store (Amazon EBS) ##
+EBS is designed as a fast and reliable block storage volume for single machines
 - High performance access.
 - Works inside az (availability zones).
 - Do not support cross az.
+- Is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).
+- Expensive than S3 and EFS
 
-# AWS Snowballs ##
+## Amazon File Cache ##
+Provides a high-speed cache on AWS that makes it easier to process file data, regardless of where it’s stored. Amazon File Cache serves as temporary, high-performance storage for data on premises or on AWS. The service allows you to make dispersed datasets available to file-based applications on AWS with a unified view and high speeds.
+
+![Amazon File Cache](images/amazon-file-cache.png)
+
+# AWS Data Migration #
+
+## AWS DataSync ##
+Is a fully managed data transfer service that simplifies, automates, and accelerates transferring data between on-premises storage systems and Amazon S3, Amazon EFS, or Amazon FSx for Windows File Server.
+Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
+
+# AWS Snow Family ##
 ### AWS Snowball ###
 Is a service that provides secure, rugged devices, so you can bring AWS computing and storage capabilities to your edge environments, and transfer data into and out of AWS. Those rugged devices are commonly referred to as AWS Snowball or AWS Snowball Edge devices. Previously, AWS Snowball referred specifically to an early hardware version of these devices, however that model has been replaced by updated hardware. Now the AWS Snowball service operates with Snowball Edge devices, which include on-board computing capabilities as well as storage.
 
@@ -67,6 +136,46 @@ You can use AWS Snowcone devices for the following use cases:
 - To aggregate content by transferring media, scientific, or other content from your edge locations to AWS.
 - For one-time data migration scenarios where your data is ready to be transferred, Snowcone offers a quick and low-cost way to transfer up to 8 TB or 14 TB of data to the AWS Cloud by shipping the device back to AWS.
 
+### AWS Snowmobile ###
+AWS Snowmobile is an Exabyte-scale data migration device used to move extremely large amounts of data to AWS. Migrate up to 100PB in a 45-foot long ruggedized shipping container, pulled by a semi-trailer truck.
+
+## Hybrid cloud storage and edge computing ##
+
+### AWS Storage Gateway ###
+Connects on-premises environments with cloud storage through cached volumes, stored volumes and tape-based backup.
+SMB.
+AWS Storage Gateway Volume Gateway provides two configurations for connecting to iSCSI storage, namely, stored volumes and cached volumes. The stored volume configuration stores the entire data set on-premises and asynchronously backs up the data to AWS. The cached volume configuration stores recently accessed data on-premises, and the remaining data is stored in Amazon S3.
+
+## Managed file transfer ##
+
+### AWS Transfer Family ###
+Securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
+By configuring AWS Transfer Family SFTP endpoints, you can provide a secure and convenient way for employees to access and transfer data to and from the S3 bucket.
+Using custom identity provider options allows you to integrate with existing identity systems, and AWS Secrets Manager can be used to manage user credentials securely.
+
+## Disaster recovery and backup ##
+
+### AWS Elastic Disaster Recovery (AWS DRS) ###
+Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
+Set up AWS Elastic Disaster Recovery on your source servers to initiate secure data replication. Your data is replicated to a staging area subnet in your AWS account, in the AWS Region you select. The staging area design reduces costs by using affordable storage and minimal compute resources to maintain ongoing replication. You can perform non-disruptive tests to confirm that implementation is complete. During normal operation, maintain readiness by monitoring replication and periodically performing non-disruptive recovery and failback drills. If you need to recover applications, you can launch recovery instances on AWS within minutes, using the most up-to-date server state or a previous point in time. After your applications are running on AWS, you can choose to keep them there, or you can initiate data replication back to your primary site when the issue is resolved. You can fail back to your primary site whenever you’re ready.
+
+![DRS](images/aws-drs.png)
+
+## AWS Backup ##
+Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
+NO Glacier Deep is supported by AWS Backup.
+
+![AWS Backup](images/aws-backup.png)
+
+
+
+
+
+____________________
+
+
+## Virtual private gateway ##
+A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
 
 ### Simple Notification Service ###
 - Deliver A2A notifications to integrate and decouple distributed applications.
@@ -86,21 +195,6 @@ You can use AWS Snowcone devices for the following use cases:
 
 ## S3 Standard-Infrequent Access ## 
 Is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval charge.
-
-
-### Amazon Elastic File System (EFS) ###
-- Serverless, fully elastic file storage
-- Automatically grows and shrinks as you add and remove files with no need for management or provisioning.
-- Amazon EFS provides shared access to data using a traditional file sharing permissions model and hierarchical directory structure via the NFSv4 protocol. Applications that access data using a standard file system interface provided through the operating system can use Amazon EFS to take advantage of the scalability and reliability of file storage in the cloud without writing any new code or adjusting applications.
-- Hierarchical directory structure, read and write rapidly and concurrently to shared storage
-- Store files without server
-- Pay just for the storage.
-- Support cross Availability zones.
-- Cheap than EBS
-- Expensive than S3
-
-##  S3 Lifecycle configuration ##
-Is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
 
 ### Transition actions ###
 - These actions define when objects transition to another storage class. For example, you might choose to transition objects to the S3 Standard-IA storage class 30 days after creating them, or archive objects to the S3 Glacier Flexible Retrieval storage class one year after creating them. For more information, see Using Amazon S3 storage classes.
@@ -207,20 +301,8 @@ Is a data security service that discovers sensitive data using machine learning 
 Is a fully managed, petabyte-scale data warehouse service in the cloud. Amazon Redshift Serverless lets you access and analyze data without all of the configurations of a provisioned data warehouse. Resources are automatically provisioned and data warehouse capacity is intelligently scaled to deliver fast performance for even the most demanding and unpredictable workloads.
 You don't incur charges when the data warehouse is idle, so you only pay for what you use.
 
-## IAM Role ## 
-- Could be used to grant access to an EC2 Intance.
-- Are not directly attached to IAM groups.
-  
-## IAM policies ##
-You can't specify the principal in an identity-based policy because it applies to the user or role to which it is attached
-Can be directly attached to IAM groups too.
-
 ## Gateway Load Balancer endpoint ##
 - Is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC.
-
-## Amazon Elastic Block Store (Amazon EBS) ##
-- Is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud (Amazon EC2).
-- Expensive than S3 and EFS
 
 ## Amazon EBS Fast Snapshot Restore ##
 This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
@@ -377,18 +459,8 @@ Traditional databases allow you to overwrite or delete data, so developers use t
 What data should I store in a ledger database?
 Amazon QLDB's features make it a natural fit for system-of-record applications – those for which data integrity, completeness, and verifiability are critical. For example, in the supply chain and logistics space, an application built on Amazon QLDB would have the entire history of changes, such as movement between carriers and across borders, available for query and analysis. In finance, system-of-record applications track critical data, such as credit and debit transactions. Instead of building complex record keeping functionality within their application, banks can use QLDB to easily store a permanent and complete record of all financial transactions.
 
-## Elastic Block Store ##
-EBS is designed as a fast and reliable block storage volume for single machines
-
 ## S3 Object Lock ##
 Blocks permanent object deletion during a customer-defined retention period so that you can enforce retention policies as an added layer of data protection or for regulatory compliance.
-
-## Amazon FSx for Windows File Server ##
-Provides fully managed Microsoft Windows file servers, backed by a fully native Windows file system. FSx for Windows File Server has the features, performance, and compatibility to easily lift and shift enterprise applications to the AWS Cloud.
-SMB.
-
-## Amazon FSx File Gateway (FSx File Gateway) ##
-Is a new File Gateway type that provides low latency and efficient access to in-cloud FSx for Windows File Server file shares from your on-premises facility
 
 ## Joining the FSx for Windows File Server file system to the on-premises Active Directory  ## 
 will allow the company to use the existing Active Directory groups to restrict access to the file shares, folders, and files after the move to AWS. This option allows the company to continue using their existing access controls and management structure, making the transition to AWS more seamless.
@@ -444,17 +516,9 @@ Keywoards: key-value data
 ## Amazon DynamoDB point-in-time recovery ## 
 Enables you to back up your table data continuously by using point-in-time recovery (PITR). When you enable PITR, DynamoDB backs up your table data automatically with per-second granularity so that you can restore to any given second in the preceding 35 days
 
-## AWS DataSync ##
-Is a fully managed data transfer service that simplifies, automates, and accelerates transferring data between on-premises storage systems and Amazon S3, Amazon EFS, or Amazon FSx for Windows File Server.
-Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
-
 ## DAX stands for DynamoDB Accelerator ## 
 It's like a turbo boost for your DynamoDB tables.
 It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
-
-## AWS Backup ##
-Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
-NO Glacier Deep is supported by AWS Backup.
 
 ## On-demand mode ##
 Is a good option if any of the following are true:
@@ -471,11 +535,6 @@ Is a service that lets you create a fleet of EC2 instances that can help make yo
 ## S3 Object Lock ##
 Used to store objects using a write-once-read-many (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. You can use S3 Object Lock to meet regulatory requirements that require WORM storage, or add an extra layer of protection against object changes and deletion.
 Versioning is required and automatically activated as Object Lock is enabled.
-
-## Amazon FSx for Lustre ##
-Is a fully managed file system that is designed for high-performance workloads, such as gaming applications. It provides a high-performance, scalable, and fully managed file system that is optimized for Lustre clients, and it is fully integrated with Amazon EC2. It is the only option that meets the requirements of being fully managed and able to support Lustre clients.
-Amazon FSx for Lustre is a fully managed, high-performance file system optimized for HPC workloads. It is designed to deliver sub-millisecond latencies and high throughput, making it ideal for applications that require parallel access to shared storage, such as simulations and data analytics
-
 
 ## AWS Glue ##
 Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources.
@@ -533,11 +592,6 @@ Is that there are NO users that can override the retention periods set or delete
 
 ## Field-level encryption ##
 Allows you to enable your users to securely upload sensitive information to your web servers. The sensitive information provided by your users is encrypted at the edge, close to the user, and remains encrypted throughout your entire application stack
-
-## AWS Transfer Family ##
-Securely scales your recurring business-to-business file transfers to AWS Storage services using SFTP, FTPS, FTP, and AS2 protocols.
-By configuring AWS Transfer Family SFTP endpoints, you can provide a secure and convenient way for employees to access and transfer data to and from the S3 bucket.
-Using custom identity provider options allows you to integrate with existing identity systems, and AWS Secrets Manager can be used to manage user credentials securely.
 
 ## Elastic Beanstalk ##
 You can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications.
@@ -649,15 +703,6 @@ Not available for:
   - RDS for MariaDB
   - RDS for Oracle
   - RDS for SQL Server
-
-## Amazon FSx for NetApp ONTAP ##
-Is when you need to move workloads running on NetApp or other NFS/SMB/iSCSI servers to AWS without modifying application code or how you manage data.
-Amazon FSx for NetApp ONTAP is a fully managed service that provides highly reliable, scalable, high-performing, and feature-rich file storage built on NetApp's popular ONTAP file system.
-
-## AWS Storage Gateway ##
-Connects on-premises environments with cloud storage through cached volumes, stored volumes and tape-based backup.
-SMB.
-AWS Storage Gateway Volume Gateway provides two configurations for connecting to iSCSI storage, namely, stored volumes and cached volumes. The stored volume configuration stores the entire data set on-premises and asynchronously backs up the data to AWS. The cached volume configuration stores recently accessed data on-premises, and the remaining data is stored in Amazon S3.
 
 ## With its virtual tape library (VTL) interface (iSCSI) ##
 You use your existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on your Tape Gateway. Each Tape Gateway is preconfigured with a media changer and tape drives.
@@ -815,8 +860,6 @@ Secrets encryption using that KMS key on the EKS cluster. This will encrypt secr
 ## Amazon EKS Connector ##
 To register and connect any conformant Kubernetes cluster to AWS and visualize it in the Amazon EKS console.
 
-## AWS Elastic Disaster Recovery (AWS DRS) ##
-Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
 
 ## AWS Control Tower ##
 Offers the easiest way to set up and govern a secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and it enables governance using controls you can choose from a pre-packaged list.
