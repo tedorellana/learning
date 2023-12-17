@@ -1,10 +1,27 @@
 # AWS Certified Solutions Architect [SAA - C03] #
 
-## Organization Unit ##
-Contains details about an organizational unit (OU). An OU is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
+# AWS Organizations #
+Is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. 
 
-## AWS Organizations ##
-Is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. AWS Organizations includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business. As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization.
+Includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business.
+
+As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization.
+
+## Organization Unit ##
+Is a container of AWS accounts within a root of an organization. 
+
+Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
+
+# VPC (Amazon virtual Cloud) #
+Allows you to launch AWS resources in a logically isolated virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
+
+### VPC Endpoints ###
+Allows to connect to AWS services using a private network instead using the public internet.
+Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections.
+Allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
+
+
+
 
 ### S3 Transfer Acceleration ###
 - Good for high speed
@@ -12,14 +29,6 @@ Is an account management service that enables you to consolidate multiple AWS ac
 
 ### Principal OrgID ###
 - Validates if the principal accessing the resource is within your organization.
-
-## VPC ##
-- Is a virtual network that closely resembles a traditional network that you'd operate in your own data center. After you create a VPC, you can add subnets.
-
-### VPC Endpoints ###
-Allows to connect to AWS services using a private network instead using the public internet.
-Enables you to privately access AWS services without requiring internet gateways, NAT gateways, VPN connections, or AWS Direct Connect connections.
-Allows you to connect your VPC directly to supported AWS services, such as Amazon S3, over a private connection within the AWS network.
 
 ## Virtual private gateway ##
 A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
