@@ -1,5 +1,11 @@
 # AWS Certified Solutions Architect [SAA - C03] #
 
+## Organization Unit ##
+Contains details about an organizational unit (OU). An OU is a container of AWS accounts within a root of an organization. Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
+
+## AWS Organizations ##
+Is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage. AWS Organizations includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business. As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization.
+
 ### S3 Transfer Acceleration ###
 - Good for high speed
 - Designed to optimize transfer speeds from across the world into S3 buckets.
@@ -119,6 +125,7 @@ CloudFront uses Edge Locations to cache content
 AWS Global Accelerator is a networking service that helps you improve the availability, performance, and security of your public applications. Global Accelerator provides two global static public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs.
 Use Edge Locations to find an optimal pathway to the nearest regional endpoint.
 Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses
+Global Accelerator is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover.
 UDP.
 Geographically dispersed.
 
@@ -458,6 +465,8 @@ Versioning is required and automatically activated as Object Lock is enabled.
 
 ## Amazon FSx for Lustre ##
 Is a fully managed file system that is designed for high-performance workloads, such as gaming applications. It provides a high-performance, scalable, and fully managed file system that is optimized for Lustre clients, and it is fully integrated with Amazon EC2. It is the only option that meets the requirements of being fully managed and able to support Lustre clients.
+Amazon FSx for Lustre is a fully managed, high-performance file system optimized for HPC workloads. It is designed to deliver sub-millisecond latencies and high throughput, making it ideal for applications that require parallel access to shared storage, such as simulations and data analytics
+
 
 ## AWS Glue ##
 Is a serverless data integration service that makes it easy for analytics users to discover, prepare, move, and integrate data from multiple sources.
@@ -708,6 +717,7 @@ Ensures that all connections to the S3 bucket are encrypted in transit.
 
 ## Interface endpoint ##
 Is a horizontally scaled, redundant VPC endpoint that provides private connectivity to a service. It is an elastic network interface with a private IP address that serves as an entry point for traffic destined to the AWS service. Interface endpoints are used to connect VPCs with AWS services
+on premise?
 
 ## Automated backups ##
 Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
@@ -846,6 +856,43 @@ Automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2)
 Also known as “rehosting,” 
 Is the process of migrating an exact copy of an application or workload, together with its data store and operating system (OS), from IT one environment to another—usually from on-premises to public or private cloud.
 
+## Provisioned IOPS SSD volumes ##
+Are backed by solid-state drives (SSDs). They are the highest performance Amazon EBS storage volumes designed for critical, IOPS-intensive, and throughput-intensive workloads that require low latency. Provisioned IOPS SSD volumes deliver their provisioned IOPS performance 99.9 percent of the time.
+
+Amazon EBS offers two types of Provisioned IOPS SSD volumes:
+
+### Provisioned IOPS SSD (io1) volumes ###
+Are designed to meet the needs of I/O-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99.9 percent of the time.
+
+io1 volumes are designed to provide 99.8 percent to 99.9 percent volume durability with an annual failure rate (AFR) no higher than 0.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one-year period.
+
+### io2 Block Express volumes ###
+Are built on the next generation of Amazon EBS storage server architecture. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on instances built on the Nitro System. With the highest durability and lowest latency, Block Express is ideal for running performance-intensive, mission-critical workloads, such as Oracle, SAP HANA, Microsoft SQL Server, and SAS Analytics.
+
+Block Express architecture increases performance and scale of io2 volumes. Block Express servers communicate with instances built on the Nitro System using the Scalable Reliable Datagram (SRD) networking protocol. This interface is implemented in the Nitro Card dedicated for Amazon EBS I/O function on the host hardware of the instance. It minimizes I/O delay and latency variation (network jitter), which provides faster and more consistent performance for your applications.
+
+io2 Block Express volumes are designed to provide 99.999 percent volume durability with an annual failure rate (AFR) no higher than 0.001 percent, which translates to a single volume failure per 100,000 running volumes over a one-year period. io2 Block Express volumes are suited for workloads that benefit from a single volume that provides sub-millisecond latency, supports higher IOPS and throughput, and larger capacity than gp3 volumes.
+
+## General Purpose SSD (gp2 and gp3) volumes ##
+Are backed by solid-state drives (SSDs). They balance price and performance for a wide variety of transactional workloads. These include virtual desktops, medium-sized single instance databases, latency sensitive interactive applications, development and test environments, and boot volumes. We recommend these volumes for most workloads.
+
+Amazon EBS offers the following types of General Purpose SSD volumes:
+
+### General Purpose SSD (gp2) volumes ###
+They offer cost-effective storage that is ideal for a broad range of transactional workloads. With gp2 volumes, performance scales with volume size.
+
+To find out how much you can save by migrating your gp2 volumes to gp3, use the Amazon EBS gp2 to gp3 migration cost savings calculator.
+
+gp2 volumes provide single-digit millisecond latency and 99.8 percent to 99.9 percent volume durability with an annual failure rate (AFR) no higher than 0.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one-year period. AWS designs gp2 volumes to deliver their provisioned performance 99 percent of the time.
+
+Tip
+gp3 volumes are the latest generation of General Purpose SSD volumes. They offer more predictable performance scaling and prices that are up to 20 percent lower than gp2 volumes. For more information, see General Purpose SSD (gp3) volumes.
+
+### General Purpose SSD (gp3) volumes ###
+General Purpose SSD (gp3) volumes are the latest generation of General Purpose SSD volumes, and the lowest cost SSD volume offered by Amazon EBS. This volume type helps to provide the right balance of price and performance for most applications. It also helps you to scale volume performance independently of volume size. This means that you can provision the required performance without needing to provision additional block storage capacity. Additionally, gp3 volumes offer a 20 percent lower price per GiB than General Purpose SSD (gp2) volumes.
+
+gp3 volumes provide single-digit millisecond latency and 99.8 percent to 99.9 percent volume durability with an annual failure rate (AFR) no higher than 0.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one-year period. AWS designs gp3 volumes to deliver their provisioned performance 99 percent of the time.
+
 ## General Purpose SSD volumes include gp2 and gp3 types ##
 Both:
 - gp2 and gp3 can reach up to 16000 IOPS
@@ -902,6 +949,20 @@ You can make changes to the RDS DB instances in the green environment without af
 
 Because the green environment is a copy of the topology of the production environment, the green environment includes the features used by the DB instance. These features include the read replicas, the storage configuration, DB snapshots, automated backups, Performance Insights, and Enhanced Monitoring. If the blue DB instance is a Multi-AZ DB instance deployment, then the green DB instance is also a Multi-AZ DB instance deployment.
 
+## Create a long-running cluster ##
+
+By default, clusters that you create with the console or the AWS CLI are long-running. Long-running clusters continue to run, accept work, and accrue charges until you take action to shut them down.
+
+A long-running cluster is effective in the following situations:
+
+  - When you need to interactively or automatically query data.
+  - When you need to interact with big data applications hosted on the cluster on an ongoing basis.
+  - When you periodically process a data set so large or so frequently that it is inefficient to launch new clusters and load data each time.
+
+## Tansient cluster ##
+A transient EMR cluster is designed to terminate as soon as the job is complete or if any error occurs. A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
+A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
+
 ## Auto scaling ##
 
 ## on Demand scaling ##
@@ -910,8 +971,13 @@ Because the green environment is a copy of the topology of the production enviro
 
 ## cron job. ##
 
+##  Use Amazon FSx for Lustre persistent file systems ##
 
+## Amazon FSx for Lustre scratch file systems ##
 
+## Glacier types ##
+
+## why is necessary to tag in aws ##
 
 
 
