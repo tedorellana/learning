@@ -90,6 +90,11 @@ Is a command line tool to help you lift and shift applications that run in your 
 ## AWS Systems Manager ##
 Provides configuration management, which helps you maintain consistent configuration of your Amazon EC2 or on-premises instances. With Systems Manager, you can control configuration details such as server configurations, anti-virus definitions, firewall settings, and more.
 
+## Why is necessary to tag in aws ##
+Tagging is the act of assigning metadata to the different resources in your AWS environment for a variety of purposes, such as Attribute Based Access Control (ABAC), Cloud Financial Management, and automation (such as patching for select tagged instances). Tagging can also be used to create new resource constructs for visibility or control (such as grouping together resources that make up a micro-service, application, or workload). Tagging is fundamental to providing enterprise-level visibility and control
+
+![Tagging](images/tagging-on-aws.png)
+
 ---
 
 # AWS Networking #
@@ -170,6 +175,10 @@ Provides private connectivity between virtual private clouds (VPCs), supported A
 
 ## A VPC peering connection ##
 Is a networking connection between two VPCs that enables you to route traffic between them using private IPv4 addresses or IPv6 addresses. Instances in either VPC can communicate with each other as if they are within the same network.
+
+### Route table ###
+- Is a set of rules that determines where network traffic is directed.
+- Each subnet in your AWS VPC is associated with a route table which controls the traffic flow between subnets.
 
 ---
 
@@ -287,6 +296,8 @@ EBS is designed as a fast and reliable block storage volume for single machines
 - Expensive than S3 and EFS
 An Amazon EBS volume is a durable, block-level storage device that you can attach to your instances. After you attach a volume to an instance, you can use it as you would use a physical hard drive. EBS volumes are flexible. For current-generation volumes attached to current-generation instance types, you can dynamically increase size, modify the provisioned IOPS capacity, and change volume type on live production volumes.
 
+### The Instance Scheduler on AWS solution ###
+Automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Relational Database Service (Amazon RDS) instances. This solution helps reduce operational costs by stopping resources that are not in use and starting them when they are needed.
 
 ---
 
@@ -328,6 +339,13 @@ Enables you to back up your table data continuously by using point-in-time recov
 ## DAX stands for DynamoDB Accelerator ## 
 It's like a turbo boost for your DynamoDB tables.
 It's a fully managed, in-memory cache that speeds up the read and write performance of your DynamoDB tables, so you can get your data faster than ever before
+
+## Dynamo VS Aurora ##
+DynamoDB can handle any throughput as long as the items are well distributed. There is a limitation on DynamoDB of 400kb per item, so if your document metadata exceeds this size then it is not the option for you.
+
+DynamoDB is suited to OLTP workloads whereas Aurora is more suited to OLAP workloads. If your use-case needs high throughput and low latency, then DynamoDB is a better option. If your use-case involves analytical queries, then Aurora is a better option.
+
+Amazon Aurora | Amazon DynamoDB ---|---|--- It was developed by Amazon in 2015. |It was developed by Amazon in 2012. It is MySQL and PostgreSQL compatible cloud service by Amazon. | It is hosted, scalable database service by Amazon with data stored in Amazon cloud. It provides concept of Referential Integrity. Hence, no Foreign Keys.| It does not provide concept of Referential Integrity. Hence, no Foreign Keys. Immediate Consistency is used to ensure consistency in distributed system. | Eventual Consistency and Immediate Consistency are used to ensure consistency in distributed system. Its Primary database model is Relational DBMS.| Its Primary database models are Document store and Key-value store. It supports Server-side scripting.| It does not support Server-side scripting. Partitioning can be done with horizontal partitioning.| It supports sharding as partitioning method. It supports SQL query language.| It does not support SQL query language directly, but via PartiQL API. It supports only one replication method – Master-slave replication.| It supports replication methods. It does not offers API for user-defined Map/Reduce methods. | It does not offers API for user-defined Map/Reduce methods. But maybe implemented via Amazon Elastic MapReduce.
 
 ## Amazon RDS Custom for Oracle ##
 Has access to the underlying OS and it provides less operational overhead. 
@@ -386,9 +404,13 @@ Just can handle simple characters strings and string up to 1 MB
 
 # AWS Data Migration #
 
-## AWS DataSync ##
+### AWS DataSync ###
 Is a fully managed data transfer service that simplifies, automates, and accelerates transferring data between on-premises storage systems and Amazon S3, Amazon EFS, or Amazon FSx for Windows File Server.
 Is a data transfer service that uses network optimization techniques to transfer data efficiently and securely between on-premises storage systems and Amazon S3 or other storage targets. When used over AWS Direct Connect, DataSync can provide a dedicated and secure network connection between your on-premises data center and AWS. This can help to ensure a more reliable and secure data transfer compared to using the public internet.
+
+### Lift and shift ###
+Also known as “rehosting,” 
+Is the process of migrating an exact copy of an application or workload, together with its data store and operating system (OS), from IT one environment to another—usually from on-premises to public or private cloud.
 
 ---
 
@@ -451,6 +473,8 @@ Allow programmatic control of backup plans and restores. This enables restoring 
 ## Automated backups ##
 Allow you to recover your database to any point in time within your specified retention period, which can be up to 35 days. The recovery process creates a new Amazon RDS instance with a new endpoint, and the process takes time proportional to the size of the database. Automated backups are enabled by default and occur daily during the backup window.
 
+## With its virtual tape library (VTL) interface (iSCSI) ##
+You use your existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on your Tape Gateway. Each Tape Gateway is preconfigured with a media changer and tape drives.
 ---
 
 # Processing Strategy #
@@ -549,6 +573,13 @@ Allows you to distribute traffic across multiple EC2 instances, it does not ensu
 
 ![Amazon Route 53](/images/amazon-route-53.png)
 
+## DNS Validation ##
+The Domain Name System (DNS) is a directory service for resources that are connected to a network. Your DNS provider maintains a database containing records that define your domain. When you choose DNS validation, ACM provides you with one or more CNAME records that must be added to this database. These records contain a unique key-value pair that serves as proof that you control the domain.
+For example, if you request a certificate for the example.com domain with www.example.com as an additional name, ACM creates two CNAME records for you. Each record, created specifically for your domain and your account, contains a name and a value. The value is an alias that points to an AWS domain that ACM uses to automatically renew your certificate. The CNAME records must be added to your DNS database only once. ACM automatically renews your certificate as long as the certificate is in use and your CNAME record remains in place.
+
+Note:
+ - After you create a certificate with email validation, you cannot switch to validating it with DNS.
+
 ---
 
 # Load balancer #
@@ -564,6 +595,11 @@ A load balancer serves as the single point of contact for clients. The load bala
 
 ## Gateway Load Balancer endpoint ##
 - Is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC.
+
+## Sticky sessions ##
+Also known as session persistence — is the method that makes it possible for the load balancer to identify requests coming from the same client and to always send those requests to the same server.
+
+---
 
 # Storage Services #
 ### Amazon Aurora (Aurora) ###
@@ -592,14 +628,52 @@ Allows you to automatically route write request to the healthy writer, minimizin
 ### Amazon EBS Fast Snapshot Restore ###
 This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
 
+---
+
+# Routing policies #
+When you create a record, you choose a routing policy, which determines how Amazon Route 53 responds to queries:
+
+### Simple routing policy ###
+Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. You can use simple routing to create records in a private hosted zone.
+
+### Failover routing policy ###
+Use when you want to configure active-passive failover. You can use failover routing to create records in a private hosted zone.
+
+### Geolocation routing policy ###
+Use when you want to route traffic based on the location of your users. You can use geolocation routing to create records in a private hosted zone.
+
+### Geoproximity routing policy ###
+Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another location.
+
+### Latency routing policy ###
+Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency. You can use latency routing to create records in a private hosted zone.
+
+### IP-based routing policy ###
+Use when you want to route traffic based on the location of your users, and have the IP addresses that the traffic originates from.
+
+### Multivalue answer routing policy ###
+Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. You can use multivalue answer routing to create records in a private hosted zone.
+
+### Weighted routing policy ###
+Use to route traffic to multiple resources in proportions that you specify. You can use weighted routing to create records in a private hosted zone.
+
+### spread placement group ###
+Spread level placement groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time. If you start or launch an instance in a spread placement group and there is insufficient unique hardware to fulfill the request, the request fails.
+
+---
+
 # Starting Strategies #
 ## The warm standby approach ##
 Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
+
+---
 
 # AWS Data Lake #
 
 ### Lake Formation ###
 Can be used to create and manage the data lake's metadata and enforce security and governance policies, including column-level access control. This solution then uses Amazon Athena as the data source in QuickSight to query the data in the S3 data lake. This solution minimizes operational overhead by leveraging AWS services to manage and secure the data, and by using a standard query service (Amazon Athena) to provide a SQL interface to the data.
+
+---
 
 # Security #
 
@@ -637,6 +711,14 @@ Simplifies your administration and maintenance tasks across multiple accounts an
 ### Patch Manager ###
 The primary focus of Patch Manager, a capability of AWS Systems Manager, is on installing operating systems security-related updates on managed nodes. By default, Patch Manager doesn't install all available patches, but rather a smaller set of patches focused on security. (Ref https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-how-it-works-selection.html)
 
+### Identifying and resolving drift ###
+Is a regular operations task for AWS Control Tower management account administrators. Resolving drift helps to ensure your compliance with governance requirements.
+When you create your landing zone, the landing zone and all the organizational units (OUs), accounts, and resources are compliant with the governance rules enforced by your chosen controls. As you and your organization members use the landing zone, changes in this compliance status may occur. Some changes may be accidental, and some may be made intentionally to respond to time-sensitive operational events.
+Drift detection assists you in identifying resources that need changes or configuration updates to resolve the drift.
+
+### Signed URL ###
+Includes additional information, for example, an expiration date and time, that gives you more control over access to your content. This additional information appears in a policy statement, which is based on either a canned policy or a custom policy.
+
 ---
 
 # Dash boards #
@@ -645,8 +727,7 @@ The primary focus of Patch Manager, a capability of AWS Systems Manager, is on i
 - Serveless BI.
 
 
-
-
+---
 
 # Warehouses #
 ### Amazon Redshift ###
@@ -713,6 +794,32 @@ Map states can use a variety of input types, including a JSON array, a list of A
 
 Step Functions provides two types of processing modes for using the Map state in your workflows: Inline mode and Distributed mode.
 
+Key concepts in this topic:
+
+#### Inline Map state ####
+A Map state set to the Inline mode.
+
+#### Map workflow ####
+The set of steps that the Map state runs for each iteration.
+
+#### Map state iteration ####
+A repetition of the workflow defined inside of the Map state.
+
+#### Inline mode ####
+By default, Map states runs in Inline mode. In Inline mode, the Map state accepts only a JSON array as input. It receives this array from a previous step in the workflow. In this mode, each iteration of the Map state runs in the context of the workflow that contains the Map state. Step Functions adds the execution history of these iterations to the parent workflow's execution history.
+
+In this mode, the Map state supports up to 40 concurrent iterations.
+
+A Map state set to Inline is known as an Inline Map state. Use the Map state in Inline mode if your workflow's execution history won't exceed 25,000 entries, or if you don't require more than 40 concurrent iterations.
+
+#### Distributed ####
+You can orchestrate large-scale parallel workloads to perform tasks, such as on-demand processing of semi-structured data. These parallel workloads let you concurrently process large-scale data sources stored in Amazon S3. For example, you might process a single JSON or CSV file that contains large amounts of data. Or you might process a large set of Amazon S3 objects.
+
+To set up a large-scale parallel workload in your workflows, include a Map state in Distributed mode. The Map state processes items in a dataset concurrently. A Map state set to Distributed is known as a Distributed Map state. In Distributed mode, the Map state allows high-concurrency processing. In Distributed mode, the Map state processes the items in the dataset in iterations called child workflow executions. You can specify the number of child workflow executions that can run in parallel. Each child workflow execution has its own, separate execution history from that of the parent workflow. If you don't specify, Step Functions runs 10,000 parallel child workflow executions in parallel.
+
+The following illustration explains how you can set up large-scale parallel workloads in your workflows.
+![Step Functions Parallel Execution](images/step-functions-parallel.png)
+
 ### AWS Batch ###
 Helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
 AWS Backup automates backup of resources like EBS volumes. It allows defining backup policies for groups of resources. This removes the need to manually create backups for each resource.
@@ -727,11 +834,20 @@ Provisioned concurrency initializes a requested number of execution environments
 ### Lambdaa@Edge function ###
 Using a Lambda@Edge function with an external image management library is the best solution to resize the images dynamically and serve appropriate formats to clients. Lambda@Edge is a serverless computing service that allows running custom code in response to CloudFront events, such as viewer requests and origin requests. By using a Lambda@Edge function, it's possible to process images on the fly and modify the CloudFront response before it's sent back to the client. Additionally, Lambda@Edge has built-in support for external libraries that can be used to process images. This approach will reduce operational overhead and scale automatically with traffic.
 
+### Lambda SnapStart ###
+Lambda SnapStart for Java can improve startup performance for latency-sensitive applications by up to 10x at no extra cost, typically with no changes to your function code. The largest contributor to startup latency (often referred to as cold start time) is the time that Lambda spends initializing the function, which includes loading the function's code, starting the runtime, and initializing the function code.
+
 ### Function URL ###
 Provides a direct invoke endpoint for the Lambda function.
 Is a dedicated HTTP(S) endpoint for your Lambda function.
 When you create a function URL, Lambda automatically generates a unique URL endpoint for you.
 
+### AWS Cron job. ###
+Cron jobs are usually used to schedule commands at a specific time. You can use them for tasks like running backups, monitoring the status of the system, or running system maintenance tasks.
+
+Cron jobs are a helpful utility for system administrators. And when you are administering a system in the cloud, cron jobs are still very useful – you still have to do a lot of administrative tasks on your systems.
+
+One way of running cron jobs in the cloud is to use a function as a service (FaaS), like Lambda in the AWS ecosystem.
 
 ---
 
@@ -767,24 +883,28 @@ Is a fully managed machine learning service. With SageMaker, data scientists and
 
 # Authentication #
 
-## Joining the FSx for Windows File Server file system to the on-premises Active Directory  ## 
+### Joining the FSx for Windows File Server file system to the on-premises Active Directory ###
 will allow the company to use the existing Active Directory groups to restrict access to the file shares, folders, and files after the move to AWS. This option allows the company to continue using their existing access controls and management structure, making the transition to AWS more seamless.
 
-## Amazon Cognito ##
+### Amazon Cognito ###
 It's a user directory, an authentication server, and an authorization service for OAuth 2.0 access tokens and AWS credentials. With Amazon Cognito, you can authenticate and authorize users from the built-in user directory, from your enterprise directory, and from consumer identity providers like Google and Facebook.
 
-## Cognito User pool ##
+### Cognito User pool ###
 Used to:
 - Design sign-up and sign-in webpages for your up.
 - Access and manage user data.
 - Track your user device, location, and IP Addresss, and adapt to sign-in request of different risk levels.
 - Use a customer authentication flow for your app.
 
-## Cognito Identity pool ##
+### Cognito Identity pool ###
 Used to:
 - Give your user access to AWS resources, such as an Amazon simple Storage Service (Amazon S3) bucket or an Amazon DynamoDB Table.
 - Generate temporray AWS credential for unauthenticated users.
 
+### Security Assertion Markup Language 2.0 (SAML) ###
+Is an open federation standard that allows an identity provider (IdP) to authenticate users and pass identity and security information about them to a service provider (SP), typically an application or service. With SAML, you can enable a single sign-on experience for your users across many SAML-enabled applications and services. Users authenticate with the IdP once using a single set of credentials, and then get access to multiple applications and services without additional sign-ins. Because SAML-enabled applications delegate authentication to an IdP, the SP can automatically grant, revoke, or change the scope of a user’s access to applications and services when an administrator adds, removes, or modifies the user’s information in the IdP.
+
+AWS provides distinct SAML solutions for authenticating your employees, contractors, and partners (workforce) to AWS accounts and business applications, and for adding SAML support to your customer-facing web and mobile applications. 
 
 ---
 
@@ -802,6 +922,27 @@ Secrets encryption using that KMS key on the EKS cluster. This will encrypt secr
 
 ### Amazon EKS Connector ###
 To register and connect any conformant Kubernetes cluster to AWS and visualize it in the Amazon EKS console.
+
+---
+
+# Clusters #
+
+### Create a long-running cluster ###
+
+By default, clusters that you create with the console or the AWS CLI are long-running. Long-running clusters continue to run, accept work, and accrue charges until you take action to shut them down.
+
+A long-running cluster is effective in the following situations:
+
+  - When you need to interactively or automatically query data.
+  - When you need to interact with big data applications hosted on the cluster on an ongoing basis.
+  - When you periodically process a data set so large or so frequently that it is inefficient to launch new clusters and load data each time.
+
+### Tansient cluster ###
+A transient EMR cluster is designed to terminate as soon as the job is complete or if any error occurs. A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
+A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
+
+### Amazon EMR (previously called Amazon Elastic MapReduce) ###
+Is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark , on AWS to process and analyze vast amounts of data.
 
 ---
 
@@ -879,6 +1020,25 @@ Is a service that helps you model and set up your AWS resources so that you can 
 
 ---
 
+# Deployment Strategies #
+### Canary Release ###
+A canary release is a deployment strategy whereby changes are initially released to a small subset of users.
+The system is then carefully monitored for signs of trouble, using both business KPIs and operational metrics. Once you’re confident that your changes have not adversely impacted functionality, performance or security, you can roll out the changes to remaining users either in further increments or all at once.
+The initial group of users that receive the update act as the metaphorical canaries in a coalmine; if an issue is detected following the release, the damage is limited to them. Most of your users, therefore, remain unaware and unaffected. Canary releases are useful when deploying high-risk changes that cannot be adequately tested in staging environments.
+For web-based systems, implementing a canary release involves hosting two versions of your product, controlling the traffic routed to each, and proactively monitoring the health of both.
+For installed products, you can make a new version available to a subset of users. Still, you have less control over when they apply the update, so it can take longer to determine whether your changes are ready to be released more widely.
+
+###  Amazon RDS Blue/Green Deployments ###
+You can make and test database changes before implementing them in a production environment. A blue/green deployment creates a staging environment that copies the production environment. In a blue/green deployment, the blue environment is the current production environment. The green environment is the staging environment. The staging environment stays in sync with the current production environment using logical replication.
+
+You can make changes to the RDS DB instances in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version, upgrade the underlying file system configuration, or change database parameters in the staging environment. You can thoroughly test changes in the green environment. When ready, you can switch over the environments to promote the green environment to be the new production environment. The switchover typically takes under a minute with no data loss and no need for application changes.
+
+Because the green environment is a copy of the topology of the production environment, the green environment includes the features used by the DB instance. These features include the read replicas, the storage configuration, DB snapshots, automated backups, Performance Insights, and Enhanced Monitoring. If the blue DB instance is a Multi-AZ DB instance deployment, then the green DB instance is also a Multi-AZ DB instance deployment.
+
+
+
+---
+
 # Messaging #
 ### Amazon Pinpoint ###
 Is an AWS service that you can use to engage with your customers across multiple messaging channels. You can use Amazon Pinpoint to send push notifications, in-app notifications, emails, text messages, voice messages, and messages over custom channels.
@@ -886,21 +1046,34 @@ Is an AWS service that you can use to engage with your customers across multiple
 ### Amazon Simple Email Service (Amazon SES) ###
 Lets you reach customers confidently without an on-premises Simple Mail Transfer Protocol (SMTP) email server using the Amazon SES API or SMTP interface.
 
+### Amazon MQ ###
+Is a managed message broker service for Apache ActiveMQ and RabbitMQ that streamlines setup, operation, and management of message brokers on AWS.
+
+
 ---
 
 # Encryption #
 ### The x-amz-server-side-encryption header ###
 Is used to specify the encryption method that should be used to encrypt objects uploaded to an Amazon S3 bucket. By updating the bucket policy to deny if the PutObject does not have this header set, the solutions architect can ensure that all objects uploaded to the bucket are encrypted.
 
-## "aws:SecureTransport" condition on the bucket policy ##
+### "aws:SecureTransport" condition on the bucket policy ###
 Ensures that all connections to the S3 bucket are encrypted in transit.
 
-## EBS Encryption ##
+### EBS Encryption ###
 Creating a KMS key policy that enforces EBS encryption does not automatically encrypt EBS volumes. You need to create encrypted EBS volumes and attach them to EC2 instances to ensure that all data written to the volumes are encrypted at rest.
 Amazon EBS encryption as a straight-forward encryption solution for your EBS resources associated with your EC2 instances. With Amazon EBS encryption, you aren't required to build, maintain, and secure your own key management infrastructure.
 Amazon EBS encryption uses AWS KMS keys when creating encrypted volumes and snapshots.
 Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data-at-rest and data-in-transit between an instance and its attached EBS storage.
 You can attach both encrypted and unencrypted volumes to an instance simultaneously.
+
+### Server-side encryption ###
+Amazon S3 supports encryption at rest with three mutually exclusive server-side encryption options. Amazon S3 encrypts your data at the object level as it writes it to disks in its data centers and decrypts it for you when you access it.
+
+### Client-side encryption ###
+Where you encrypt your objects before you send them to Amazon S3. 
+
+### Field-level encryption ###
+Allows you to enable your users to securely upload sensitive information to your web servers. The sensitive information provided by your users is encrypted at the edge, close to the user, and remains encrypted throughout your entire application stack
 
 ---
 # Volumes #
@@ -912,80 +1085,6 @@ Both GP2 and GP3 has max IOPS 16000 but GP3 is cost effective.
 
 ### Provisioned IOPS SSD (io2) EBS ###
 The one which supports mutiple block storage (multi attach)
-
----
-
-# Debuging and auditing #
-### AWS X-Ray ###
-Helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
-
-## Workload Discovery on AWS (formerly called AWS Perspective) ##
-Is a tool to visualize AWS Cloud workloads. Use Workload Discovery on AWS to build, customize, and share detailed architecture diagrams of your workloads based on live data from AWS.
-
----
-
-# Deliver own Services #
-### AWS Service Catalog ###
-Allows you to create and manage catalogs of IT services that can be deployed within your organization. With Service Catalog, you can define a standardized set of products (solutions and tools in this case) that customers can self-service provision. By creating Service Catalog products, you can control and enforce the deployment of approved and validated solutions and tools.
-
----
-
-
-
-____________________
-
-
-
-
-
-
-
-
-
-
-## Identifying and resolving drift ##
-is a regular operations task for AWS Control Tower management account administrators. Resolving drift helps to ensure your compliance with governance requirements.
-When you create your landing zone, the landing zone and all the organizational units (OUs), accounts, and resources are compliant with the governance rules enforced by your chosen controls. As you and your organization members use the landing zone, changes in this compliance status may occur. Some changes may be accidental, and some may be made intentionally to respond to time-sensitive operational events.
-Drift detection assists you in identifying resources that need changes or configuration updates to resolve the drift.
-
-## Route table ## 
-Is a set of rules that determines where network traffic is directed. Each subnet in your AWS VPC is associated with a route table which controls the traffic flow between subnets.
-
-## Server-side encryption ##
-Amazon S3 supports encryption at rest with three mutually exclusive server-side encryption options. Amazon S3 encrypts your data at the object level as it writes it to disks in its data centers and decrypts it for you when you access it.
-
-## Client-side encryption ##
-Where you encrypt your objects before you send them to Amazon S3. 
-
-## AWS Amplify ##
-Is a set of purpose-built tools and features that enables frontend web and mobile developers to quickly and easily build full-stack applications on AWS. Amplify provides two services: Amplify Hosting and Amplify Studio.
-
-## Signed URL ##
-Includes additional information, for example, an expiration date and time, that gives you more control over access to your content. This additional information appears in a policy statement, which is based on either a canned policy or a custom policy.
-
-## Canary Release ##
-A canary release is a deployment strategy whereby changes are initially released to a small subset of users.
-The system is then carefully monitored for signs of trouble, using both business KPIs and operational metrics. Once you’re confident that your changes have not adversely impacted functionality, performance or security, you can roll out the changes to remaining users either in further increments or all at once.
-The initial group of users that receive the update act as the metaphorical canaries in a coalmine; if an issue is detected following the release, the damage is limited to them. Most of your users, therefore, remain unaware and unaffected. Canary releases are useful when deploying high-risk changes that cannot be adequately tested in staging environments.
-For web-based systems, implementing a canary release involves hosting two versions of your product, controlling the traffic routed to each, and proactively monitoring the health of both.
-For installed products, you can make a new version available to a subset of users. Still, you have less control over when they apply the update, so it can take longer to determine whether your changes are ready to be released more widely.
-
-## Lambda SnapStart ##
-Lambda SnapStart for Java can improve startup performance for latency-sensitive applications by up to 10x at no extra cost, typically with no changes to your function code. The largest contributor to startup latency (often referred to as cold start time) is the time that Lambda spends initializing the function, which includes loading the function's code, starting the runtime, and initializing the function code.
-
-## DNS Validation ##
-The Domain Name System (DNS) is a directory service for resources that are connected to a network. Your DNS provider maintains a database containing records that define your domain. When you choose DNS validation, ACM provides you with one or more CNAME records that must be added to this database. These records contain a unique key-value pair that serves as proof that you control the domain.
-For example, if you request a certificate for the example.com domain with www.example.com as an additional name, ACM creates two CNAME records for you. Each record, created specifically for your domain and your account, contains a name and a value. The value is an alias that points to an AWS domain that ACM uses to automatically renew your certificate. The CNAME records must be added to your DNS database only once. ACM automatically renews your certificate as long as the certificate is in use and your CNAME record remains in place.
-
-Note:
- - After you create a certificate with email validation, you cannot switch to validating it with DNS.
-
-## The Instance Scheduler on AWS solution ##
-Automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Relational Database Service (Amazon RDS) instances. This solution helps reduce operational costs by stopping resources that are not in use and starting them when they are needed.
-
-## Lift and shift ##
-Also known as “rehosting,” 
-Is the process of migrating an exact copy of an application or workload, together with its data store and operating system (OS), from IT one environment to another—usually from on-premises to public or private cloud.
 
 ## Provisioned IOPS SSD volumes ##
 Are backed by solid-state drives (SSDs). They are the highest performance Amazon EBS storage volumes designed for critical, IOPS-intensive, and throughput-intensive workloads that require low latency. Provisioned IOPS SSD volumes deliver their provisioned IOPS performance 99.9 percent of the time.
@@ -1024,7 +1123,7 @@ General Purpose SSD (gp3) volumes are the latest generation of General Purpose S
 
 gp3 volumes provide single-digit millisecond latency and 99.8 percent to 99.9 percent volume durability with an annual failure rate (AFR) no higher than 0.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one-year period. AWS designs gp3 volumes to deliver their provisioned performance 99 percent of the time.
 
-## General Purpose SSD volumes include gp2 and gp3 types ##
+### General Purpose SSD volumes include gp2 and gp3 types ###
 Both:
 - gp2 and gp3 can reach up to 16000 IOPS
 - Offer the same level of durability. 
@@ -1035,107 +1134,41 @@ Differences:
 - Gp3 volumes (1000 MiB/s).
 - Gp3 offers SSD-performance at a 20% lower cost per GB than gp2 volumes.
 
-# Routing policies #
-When you create a record, you choose a routing policy, which determines how Amazon Route 53 responds to queries:
-
-## Simple routing policy ##
-Use for a single resource that performs a given function for your domain, for example, a web server that serves content for the example.com website. You can use simple routing to create records in a private hosted zone.
-
-## Failover routing policy ##
-Use when you want to configure active-passive failover. You can use failover routing to create records in a private hosted zone.
-
-## Geolocation routing policy ##
-Use when you want to route traffic based on the location of your users. You can use geolocation routing to create records in a private hosted zone.
-
-## Geoproximity routing policy ##
-Use when you want to route traffic based on the location of your resources and, optionally, shift traffic from resources in one location to resources in another location.
-
-## Latency routing policy ##
-Use when you have resources in multiple AWS Regions and you want to route traffic to the Region that provides the best latency. You can use latency routing to create records in a private hosted zone.
-
-## IP-based routing policy ##
-Use when you want to route traffic based on the location of your users, and have the IP addresses that the traffic originates from.
-
-## Multivalue answer routing policy ##
-Use when you want Route 53 to respond to DNS queries with up to eight healthy records selected at random. You can use multivalue answer routing to create records in a private hosted zone.
-
-## Weighted routing policy ##
-Use to route traffic to multiple resources in proportions that you specify. You can use weighted routing to create records in a private hosted zone.
-
-## spread placement group ##
-Spread level placement groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time. If you start or launch an instance in a spread placement group and there is insufficient unique hardware to fulfill the request, the request fails.
-
-## Sticky sessions ##
-Also known as session persistence — is the method that makes it possible for the load balancer to identify requests coming from the same client and to always send those requests to the same server.
-
-## Security Assertion Markup Language 2.0 (SAML) ""
-Is an open federation standard that allows an identity provider (IdP) to authenticate users and pass identity and security information about them to a service provider (SP), typically an application or service. With SAML, you can enable a single sign-on experience for your users across many SAML-enabled applications and services. Users authenticate with the IdP once using a single set of credentials, and then get access to multiple applications and services without additional sign-ins. Because SAML-enabled applications delegate authentication to an IdP, the SP can automatically grant, revoke, or change the scope of a user’s access to applications and services when an administrator adds, removes, or modifies the user’s information in the IdP.
-
-AWS provides distinct SAML solutions for authenticating your employees, contractors, and partners (workforce) to AWS accounts and business applications, and for adding SAML support to your customer-facing web and mobile applications. 
-
-##  Amazon RDS Blue/Green Deployments ##
-You can make and test database changes before implementing them in a production environment. A blue/green deployment creates a staging environment that copies the production environment. In a blue/green deployment, the blue environment is the current production environment. The green environment is the staging environment. The staging environment stays in sync with the current production environment using logical replication.
-
-You can make changes to the RDS DB instances in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version, upgrade the underlying file system configuration, or change database parameters in the staging environment. You can thoroughly test changes in the green environment. When ready, you can switch over the environments to promote the green environment to be the new production environment. The switchover typically takes under a minute with no data loss and no need for application changes.
-
-Because the green environment is a copy of the topology of the production environment, the green environment includes the features used by the DB instance. These features include the read replicas, the storage configuration, DB snapshots, automated backups, Performance Insights, and Enhanced Monitoring. If the blue DB instance is a Multi-AZ DB instance deployment, then the green DB instance is also a Multi-AZ DB instance deployment.
-
-## Create a long-running cluster ##
-
-By default, clusters that you create with the console or the AWS CLI are long-running. Long-running clusters continue to run, accept work, and accrue charges until you take action to shut them down.
-
-A long-running cluster is effective in the following situations:
-
-  - When you need to interactively or automatically query data.
-  - When you need to interact with big data applications hosted on the cluster on an ongoing basis.
-  - When you periodically process a data set so large or so frequently that it is inefficient to launch new clusters and load data each time.
-
-## Tansient cluster ##
-A transient EMR cluster is designed to terminate as soon as the job is complete or if any error occurs. A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
-A transient cluster provides cost savings because it runs only during the computation time, and it provides scalability and flexibility in a cloud environment.
-
 ## Provisioned IOPS volumes, backed by solid-state drives (SSDs) ## 
 Are the highest performance Amazon Elastic Block Store (Amazon EBS) storage volumes designed for your critical, IOPS-intensive and throughput-intensive workloads that require low latency.
 
-## Amazon MQ ##
-Is a managed message broker service for Apache ActiveMQ and RabbitMQ that streamlines setup, operation, and management of message brokers on AWS.
 
-## Field-level encryption ##
-Allows you to enable your users to securely upload sensitive information to your web servers. The sensitive information provided by your users is encrypted at the edge, close to the user, and remains encrypted throughout your entire application stack
+---
 
-## Amazon EMR (previously called Amazon Elastic MapReduce) ##
-Is a managed cluster platform that simplifies running big data frameworks, such as Apache Hadoop and Apache Spark , on AWS to process and analyze vast amounts of data.
+# Debuging and auditing #
+### AWS X-Ray ###
+Helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
 
-## With its virtual tape library (VTL) interface (iSCSI) ##
-You use your existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on your Tape Gateway. Each Tape Gateway is preconfigured with a media changer and tape drives.
+## Workload Discovery on AWS (formerly called AWS Perspective) ##
+Is a tool to visualize AWS Cloud workloads. Use Workload Discovery on AWS to build, customize, and share detailed architecture diagrams of your workloads based on live data from AWS.
 
-### Inline mode ###
-By default, Map states runs in Inline mode. In Inline mode, the Map state accepts only a JSON array as input. It receives this array from a previous step in the workflow. In this mode, each iteration of the Map state runs in the context of the workflow that contains the Map state. Step Functions adds the execution history of these iterations to the parent workflow's execution history.
+---
 
-In this mode, the Map state supports up to 40 concurrent iterations.
+# Deliver own Services #
+### AWS Service Catalog ###
+Allows you to create and manage catalogs of IT services that can be deployed within your organization. With Service Catalog, you can define a standardized set of products (solutions and tools in this case) that customers can self-service provision. By creating Service Catalog products, you can control and enforce the deployment of approved and validated solutions and tools.
 
-A Map state set to Inline is known as an Inline Map state. Use the Map state in Inline mode if your workflow's execution history won't exceed 25,000 entries, or if you don't require more than 40 concurrent iterations.
+---
 
-### Distributed ###
-You can orchestrate large-scale parallel workloads to perform tasks, such as on-demand processing of semi-structured data. These parallel workloads let you concurrently process large-scale data sources stored in Amazon S3. For example, you might process a single JSON or CSV file that contains large amounts of data. Or you might process a large set of Amazon S3 objects.
+# Development tools #
 
-To set up a large-scale parallel workload in your workflows, include a Map state in Distributed mode. The Map state processes items in a dataset concurrently. A Map state set to Distributed is known as a Distributed Map state. In Distributed mode, the Map state allows high-concurrency processing. In Distributed mode, the Map state processes the items in the dataset in iterations called child workflow executions. You can specify the number of child workflow executions that can run in parallel. Each child workflow execution has its own, separate execution history from that of the parent workflow. If you don't specify, Step Functions runs 10,000 parallel child workflow executions in parallel.
+### AWS Amplify ###
+Is a set of purpose-built tools and features that enables frontend web and mobile developers to quickly and easily build full-stack applications on AWS. Amplify provides two services: Amplify Hosting and Amplify Studio.
 
-The following illustration explains how you can set up large-scale parallel workloads in your workflows.
-![Step Functions Parallel Execution](images/step-functions-parallel.png)
+# Amazon FSx for Lustre #
+Provides fully managed shared storage with the scalability and performance of the popular Lustre file system.
+![Lustre](images/lustre.png)
 
-## Dynamo VS Aurora ##
-
-## cron job. ##
-
-##  Use Amazon FSx for Lustre persistent file systems ##
+###  Use Amazon FSx for Lustre persistent file systems ###
+Amazon FSx for Lustre provides two deployment options: scratch and persistent. Scratch file systems are designed for temporary storage and shorter-term processing of data. Data is not replicated and does not persist if a file server fails. Persistent file systems are designed for longer-term storage and workloads.
 
 ## Amazon FSx for Lustre scratch file systems ##
-
-## Glacier types ##
-
-## why is necessary to tag in aws ##
-
+[amazon](https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html)
 
 
 
