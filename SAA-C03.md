@@ -14,7 +14,7 @@ As an administrator of an organization, you can create accounts in your organiza
 - Is a container of AWS accounts within a root of an organization.
 - Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
 
-## AWS Secrets Manager ##
+### AWS Secrets Manager ###
 - Is a secrets management service that helps you protect access to your applications, services, and IT resources
 - Used for credentials.
 
