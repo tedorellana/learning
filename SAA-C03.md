@@ -13,6 +13,10 @@ As an administrator of an organization, you can create accounts in your organiza
 - Is a container of AWS accounts within a root of an organization.
 - Policies that are attached to an OU apply to all accounts contained in that OU and in any child OUs.
 
+## AWS Secrets Manager ##
+- Is a secrets management service that helps you protect access to your applications, services, and IT resources
+- Used for credentials.
+
 ### IAM Role ###
 - Could be used to grant access to an EC2 Intance.
 - Are not directly attached to IAM groups.
@@ -44,6 +48,9 @@ The following diagram provides an overview of the resources included in this exa
 
 ![VPC Subnets Structure Overview](/images/vpc-subnets-structure-overview.png)
 
+## Virtual private gateway ##
+A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC
+
 ---
 
 # AWS Storage Services #
@@ -61,6 +68,19 @@ An object storage service offering industry-leading scalability, data availabili
 ###  S3 Lifecycle configuration ###
 Is a set of rules that define actions that Amazon S3 applies to a group of objects. There are two types of actions:
 
+### S3 Standard-Infrequent Access ###
+Is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval charge.
+
+### S3 Intelligent-Tiering ###
+- Amazon S3 Intelligent Tiering is a storage class that automatically moves data to the most cost-effective storage tier based on access patterns. It can store objects in two access tiers: the frequent access tier and the infrequent access tier. The frequent access tier is optimized for frequently accessed objects and is charged at the same rate as S3 Standard. The infrequent access tier is optimized for objects that are not accessed frequently and are charged at a lower rate than S3 Standard.
+- S3 Intelligent Tiering is a good choice for storing media files that are accessed frequently and infrequently in an unpredictable pattern because it automatically moves data to the most cost-effective storage tier based on access patterns, minimizing storage and retrieval costs. It is also resilient to the loss of an Availability Zone because it stores objects in multiple Availability Zones within a region.
+
+### Amazon S3 Glacier Deep Archive ###
+- Is a secure, durable, and extremely low-cost Amazon S3 storage class for long-term retention of data that is rarely accessed and for which retrieval times of several hours are acceptable. It is the lowest-cost storage option in Amazon S3, making it a cost-effective choice for storing backup files that are not accessed after 1 month.
+- 
+### S3 File Gateway ###
+- Provides a seamless way to connect to the cloud in order to store application data files and backup images as durable objects in Amazon S3 cloud storage. Amazon S3 File Gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.
+
 ## Amazon Elastic File System (EFS) ##
 - Serverless, fully elastic file storage
 - Automatically grows and shrinks as you add and remove files with no need for management or provisioning.
@@ -72,6 +92,17 @@ Is a set of rules that define actions that Amazon S3 applies to a group of objec
 - Cheap than EBS
 - Expensive than S3
 
+## AWS Action ##
+
+### Transition actions ###
+- These actions define when objects transition to another storage class. For example, you might choose to transition objects to the S3 Standard-IA storage class 30 days after creating them, or archive objects to the S3 Glacier Flexible Retrieval storage class one year after creating them. For more information, see Using Amazon S3 storage classes.
+
+- There are costs associated with lifecycle transition requests. For pricing information, see Amazon S3 pricing.
+
+### Expiration actions ###
+- These actions define when objects expire. Amazon S3 deletes expired objects on your behalf.
+- Lifecycle expiration costs depend on when you choose to expire objects. For more information, see Expiring objects.
+- 
 ## Amazon FSX ##
 Amazon FSx makes it easy and cost effective to launch, run, and scale feature-rich, high-performance file systems in the cloud. It supports a wide range of workloads with its reliability, security, scalability, and broad set of capabilities. Amazon FSx is built on the latest AWS compute, networking, and disk technologies to provide high performance and lower TCO. And as a fully managed service, it handles hardware provisioning, patching, and backups -- freeing you up to focus on your applications, your end users, and your business.
 
@@ -167,15 +198,7 @@ NO Glacier Deep is supported by AWS Backup.
 
 ![AWS Backup](images/aws-backup.png)
 
-
-
-
-
-____________________
-
-
-## Virtual private gateway ##
-A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC.
+# Processing Strategy #
 
 ### Simple Notification Service ###
 - Deliver A2A notifications to integrate and decouple distributed applications.
@@ -185,6 +208,9 @@ A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to
 
 ### Simple Queue Service ###
 - Queues messages managed for microservices, distributed systems and serverless applications.
+- Amazon Simple Queue Service (Amazon SQS) lets you send, store, and receive messages between software components at any volume, without losing messages or requiring other services to be available.
+
+# AWS Glacier Family #
 
 ### What is Amazon S3 Glacier ###
 - The Amazon S3 Glacier storage classes are purpose-built for data archiving, providing you with the highest performance, most retrieval flexibility, and the lowest cost archive storage in the cloud.
@@ -193,38 +219,29 @@ A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to
 
 - The S3 Glacier storage classes provide virtually unlimited scalability and are designed for 99.999999999% (11 nines) of data durability.
 
-## S3 Standard-Infrequent Access ## 
-Is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per GB storage price and per GB retrieval charge.
+![Glaciers](images/s3-glacier-overview.png)
 
-### Transition actions ###
-- These actions define when objects transition to another storage class. For example, you might choose to transition objects to the S3 Standard-IA storage class 30 days after creating them, or archive objects to the S3 Glacier Flexible Retrieval storage class one year after creating them. For more information, see Using Amazon S3 storage classes.
-
-- There are costs associated with lifecycle transition requests. For pricing information, see Amazon S3 pricing.
-
-### Expiration actions ###
-- These actions define when objects expire. Amazon S3 deletes expired objects on your behalf.
-
-- Lifecycle expiration costs depend on when you choose to expire objects. For more information, see Expiring objects.
-
-## S3 File Gateway ##
-- Provides a seamless way to connect to the cloud in order to store application data files and backup images as durable objects in Amazon S3 cloud storage. Amazon S3 File Gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.
+# AWS APIs #
 
 ## Amazon API Gateway ##
-- Is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud .
+- Is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud.
 
 ## Edge-optimized API endpoint ##
 Typically routes requests to the nearest CloudFront Point of Presence (POP), which could help in cases where your clients are geographically distributed. This is the default endpoint type for API Gateway REST APIs.
 
-## AWS Secrets Manager ##
-- Is a secrets management service that helps you protect access to your applications, services, and IT resources
-- Used for credentials.
+# AWS Fast Retrieval Strategies #
 
-## Amazon CloudFront ##
+### Amazon CloudFront ###
 Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users.
 CloudFront improves performance for both cacheable content (such as images and videos) and dynamic content (such as API acceleration and dynamic site delivery).
 CloudFront uses Edge Locations to cache content
+- Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
 
-## AWS Global Accelerator ##
+- If the content is already in the edge location with the lowest latency, CloudFront delivers it immediately.
+
+- If the content is not in that edge location, CloudFront retrieves it from an origin that you've defined—such as an Amazon S3 bucket, a MediaPackage channel, or an HTTP server (for example, a web server) that you have identified as the source for the definitive version of your content.
+
+### AWS Global Accelerator ###
 AWS Global Accelerator is a networking service that helps you improve the availability, performance, and security of your public applications. Global Accelerator provides two global static public IPs that act as a fixed entry point to your application endpoints, such as Application Load Balancers, Network Load Balancers, Amazon Elastic Compute Cloud (EC2) instances, and elastic IPs.
 Use Edge Locations to find an optimal pathway to the nearest regional endpoint.
 Good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses
@@ -234,96 +251,135 @@ Geographically dispersed.
 
 ![AWS Global Accelerator](/images/aws-global-accelerator.png)
 
-## Network Load Balancer ##
+# Load balancer #
+
+### Network Load Balancer ###
 Elastic Load Balancing scales your load balancer as your incoming traffic changes over time. It can automatically scale to the vast majority of workloads.
 Work with UDP.
 
-## Application Load Balancer ##
+### Application Load Balancer ###
 A load balancer serves as the single point of contact for clients. The load balancer distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones. This increases the availability of your application.
 
-## Amazon Aurora (Aurora) ##
+## Traffic Mirroring ##
+- Is a feature that allows you to replicate and send a copy of network traffic from a VPC to another VPC or on-premises location. It is not a service that performs traffic inspection or filtering.
+
+## Gateway Load Balancer endpoint ##
+- Is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC.
+
+# Storage Services #
+### Amazon Aurora (Aurora) ###
 - Is a fully managed relational database engine that's compatible with MySQL and PostgreSQL. You already know how MySQL and PostgreSQL combine the speed and reliability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
 - Better for read than write.
 - Is 5x performance improvement over MySQL on RDS and handles more read requests than write.
 - Aurora provides up to five times better latency than RDS and can scale up to ten times more packed operations per second than MySQL engine in RDS. It also offers an encrypted storage option for better data security
 - provides built-in security, continuous backups, serverless compute, up to 15 read replicas, automated multi-Region replication, and integrations with other AWS services.
 
-## Amazon Aurora Serverless ##
+### Amazon Aurora Serverless ###
 Is an on-demand, auto-scaling configuration for Aurora where the database automatically starts up, shuts down, and scales capacity up or down based on your application's needs.
 
-## Lake Formation ##
-Can be used to create and manage the data lake's metadata and enforce security and governance policies, including column-level access control. This solution then uses Amazon Athena as the data source in QuickSight to query the data in the S3 data lake. This solution minimizes operational overhead by leveraging AWS services to manage and secure the data, and by using a standard query service (Amazon Athena) to provide a SQL interface to the data.
-
-## The warm standby approach ##
-Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
-
-## Amazon Relational Database Service (Amazon RDS) ##
+### Amazon Relational Database Service (Amazon RDS) ###
 Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
 Do not support io2.
 
-## Amazon Relational Database Service (Amazon RDS) for MySQL ##
+### Amazon Relational Database Service (Amazon RDS) for MySQL ###
 Is a fully managed, open source, relational database that makes it easier to set up, operate, and scale MySQL databases in the cloud.
 
-## Amazon Relational Database Service (Amazon RDS) ## 
+### Amazon Relational Database Service (Amazon RDS) ###
 - Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
 
-## Amazon RDS proxy ##
+### Amazon RDS proxy ###
 Allows you to automatically route write request to the healthy writer, minimizing downtime.
 
-## AWS Network Firewall ##
+### Amazon EBS Fast Snapshot Restore ###
+This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
+
+# Starting Strategies #
+## The warm standby approach ##
+Involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region.
+
+# AWS Data Lake #
+
+### Lake Formation ###
+Can be used to create and manage the data lake's metadata and enforce security and governance policies, including column-level access control. This solution then uses Amazon Athena as the data source in QuickSight to query the data in the S3 data lake. This solution minimizes operational overhead by leveraging AWS services to manage and secure the data, and by using a standard query service (Amazon Athena) to provide a SQL interface to the data.
+
+# Security #
+
+### AWS Network Firewall ###
 - Is a managed firewall service that provides filtering for both inbound and outbound network traffic. It allows you to create rules for traffic inspection and filtering, which can help protect your production VPC.
 
-## Amazon Inspector ##
+### Amazon Inspector ###
 For automated security assessment. like known Vulnerability
 vulnerabilities = Amazon Inspector
 
-## Amazon GuardDuty ##
+### Amazon GuardDuty ###
 Is a threat detection service, not a traffic inspection or filtering service.
 malicious activity = Amazon GuardDuty
 
-## Amazon Detective ##
+### Amazon Detective ###
 Helps you analyze, investigate, and quickly identify the root cause of security findings or suspicious activities. Detective automatically collects log data from your AWS resources.
 
-## Amazon Macie ##
+### Amazon Macie ###
 Is a data security service that discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, and enables automated protection against those risks.
 
-## Traffic Mirroring ##
-- Is a feature that allows you to replicate and send a copy of network traffic from a VPC to another VPC or on-premises location. It is not a service that performs traffic inspection or filtering.
-
-## AWS Firewall Manager ##
+### AWS Firewall Manager ###
 - Is a security management service that helps you to centrally configure and manage firewalls across your accounts. It is not a service that performs traffic inspection or filtering.
 
-## QuickSight ##
+# Dash boards #
+### QuickSight ###
 - Is used to created dashboard from: S3, RDS, Redshift, Aurora, Athena, OpenSearch, Timestream.
 - Serveless BI.
 
-## Amazon Redshift ##
+
+
+
+
+# Warehouses #
+### Amazon Redshift ###
 Is a fully managed, petabyte-scale data warehouse service in the cloud. Amazon Redshift Serverless lets you access and analyze data without all of the configurations of a provisioned data warehouse. Resources are automatically provisioned and data warehouse capacity is intelligently scaled to deliver fast performance for even the most demanding and unpredictable workloads.
 You don't incur charges when the data warehouse is idle, so you only pay for what you use.
 
-## Gateway Load Balancer endpoint ##
-- Is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC.
-
-## Amazon EBS Fast Snapshot Restore ##
-This feature allows you to quickly create new EBS volumes (and subsequently AMIs) from snapshots. Fast Snapshot Restore optimizes the initialization process by pre-warming the snapshots, reducing the time it takes to create volumes from those snapshots.
 
 
-## Amazon CloudFront ##
-- Is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
 
-  - If the content is already in the edge location with the lowest latency, CloudFront delivers it immediately.
 
-  - If the content is not in that edge location, CloudFront retrieves it from an origin that you've defined—such as an Amazon S3 bucket, a MediaPackage channel, or an HTTP server (for example, a web server) that you have identified as the source for the definitive version of your content.
 
-## Amazon S3 ##
-Is an object storage platform that uses a simple API for storing and accessing data. Applications that do not require a file system structure and are designed to work with object storage can use Amazon S3 as a massively scalable, durable, low-cost object storage solution.
 
-## S3 Intelligent-Tiering ##
-- Amazon S3 Intelligent Tiering is a storage class that automatically moves data to the most cost-effective storage tier based on access patterns. It can store objects in two access tiers: the frequent access tier and the infrequent access tier. The frequent access tier is optimized for frequently accessed objects and is charged at the same rate as S3 Standard. The infrequent access tier is optimized for objects that are not accessed frequently and are charged at a lower rate than S3 Standard.
-- S3 Intelligent Tiering is a good choice for storing media files that are accessed frequently and infrequently in an unpredictable pattern because it automatically moves data to the most cost-effective storage tier based on access patterns, minimizing storage and retrieval costs. It is also resilient to the loss of an Availability Zone because it stores objects in multiple Availability Zones within a region.
 
-## Amazon S3 Glacier Deep Archive ##
-- Is a secure, durable, and extremely low-cost Amazon S3 storage class for long-term retention of data that is rarely accessed and for which retrieval times of several hours are acceptable. It is the lowest-cost storage option in Amazon S3, making it a cost-effective choice for storing backup files that are not accessed after 1 month.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+____________________
+
+
+
+
+
+
+
+
+
+
+
 
 ## AWS Cost Explorer ##
 - Is a tool that enables you to view and analyze your costs and usage. You can explore your usage and costs using the main graph, the Cost Explorer cost and usage reports, or the Cost Explorer RI reports.
