@@ -35,7 +35,7 @@ Calendar:
 12-14: 2 hrs    - 656 questions -    50 questions   -            [620]
 12-15: 2 hrs    - 100 questions -    50 questions   -            [640]
 12-16: 2 hrs    - 250 questions -   250 questions   - (*review*) [668]       - 100.00 %
-12-17: 2 hrs    - 250 questions -   250 questions   - (*review*) [Pending]
+12-17: 2 hrs    - 250 questions -   250 questions   - (*review*) [ok]
 12-18: 2 hrs    - 100 questions -   100 questions   - (review)   [Pending]
 12-19: Test day
 
