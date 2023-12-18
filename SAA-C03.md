@@ -23,8 +23,8 @@ As an administrator of an organization, you can create accounts in your organiza
 - Are not directly attached to IAM groups.
   
 ### IAM policies ###
-You can't specify the principal in an identity-based policy because it applies to the user or role to which it is attached
-Can be directly attached to IAM groups too.
+- You can't specify the principal in an identity-based policy because it applies to the user or role to which it is attached
+- Can be directly attached to IAM groups too.
 
 ### Principal OrgID ###
 - Validates if the principal accessing the resource is within your organization.
@@ -51,8 +51,9 @@ Assess, audits, and evaluates the configuration and relationships of tag resourc
 Offers the easiest way to set up and govern a secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and it enables governance using controls you can choose from a pre-packaged list.
 
 ### CloudTrail ###
-Track user activity and API call history.
-AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of AWS account activities. CloudTrail can be used to log all changes made to resources in an AWS account, including changes made by IAM users, EC2 instances, AWS management console, and other AWS services. By using CloudTrail, the solutions architect can identify the IAM user who made the configuration changes to the security group rules.
+- Track user activity and API call history.
+- AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of AWS account activities.
+- CloudTrail can be used to log all changes made to resources in an AWS account, including changes made by IAM users, EC2 instances, AWS management console, and other AWS services. By using CloudTrail, the solutions architect can identify the IAM user who made the configuration changes to the security group rules.
 
 ### Amazon CloudWatch logs ###
 You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.s
@@ -725,7 +726,6 @@ Includes additional information, for example, an expiration date and time, that 
 ### QuickSight ###
 - Is used to created dashboard from: S3, RDS, Redshift, Aurora, Athena, OpenSearch, Timestream.
 - Serveless BI.
-
 
 ---
 
