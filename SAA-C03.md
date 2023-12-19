@@ -38,19 +38,24 @@ As an administrator of an organization, you can create accounts in your organiza
 - Provides a summarised view of spending i.e. what you spent so far this month, and the predicted end of month bill, this is quite static and gives you a high level overview of spending. In addition you can configure your billing details from here. All of these features are free to use with no charge for accessing the interface.
 
 ### CloudWatch ###
+- Indicates what could be better based in metrics.
 - Is a monitoring and management service that provides data and actionable insights for AWS, on-premises, hybrid, and other cloud applications and infrastructure resources.
 - You can send continually metrics as streams to a destination of your choice. Could be Amazon kinesis Data Firehouse.
 
 ### AWS Config ###
-Helps you record configuration changes to software within EC2 instances in your AWS account and also virtual machines (VMs) or servers in your on-premises environment. The configuration information recorded by AWS Config includes Operating System updates, network configuration, and installed applications.
-
-### Config ###
-Assess, audits, and evaluates the configuration and relationships of tag resources.
+- Provides you with resource inventory, configuration history, and configuration change notifications to use security and governance.
+- AWS Config can tell you if the changes are compliant with your policies.
+- let you take action automatically if something goes wrong.
+- AWS Config is a fully managed service that provides you with resource inventory, configuration history, and configuration change notifications to use security and governance.
+- Helps you record configuration changes to software within EC2 instances in your AWS account and also virtual machines (VMs) or servers in your on-premises environment. The configuration information recorded by AWS Config includes Operating System updates, network configuration, and installed applications.
+- Assest, audits, and evaluates the configuration and relationships of tag resources.
 
 ### AWS Control Tower ###
 Offers the easiest way to set up and govern a secure, multi-account AWS environment. It establishes a landing zone that is based on best-practices blueprints, and it enables governance using controls you can choose from a pre-packaged list.
 
 ### CloudTrail ###
+- AWS CloudTrail can tell you who changed the status of your resources.
+- let you take action automatically if something goes wrong.
 - Track user activity and API call history.
 - AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of AWS account activities.
 - CloudTrail can be used to log all changes made to resources in an AWS account, including changes made by IAM users, EC2 instances, AWS management console, and other AWS services. By using CloudTrail, the solutions architect can identify the IAM user who made the configuration changes to the security group rules.
@@ -62,7 +67,7 @@ CloudWatch Logs enables you to centralize the logs from all of your systems, app
 ### Composite alarms ###
 Determine their states by monitoring the states of other alarms. You can **use composite alarms to reduce alarm noise**. For example, you can create a composite alarm where the underlying metric alarms go into ALARM when they meet specific conditions. You then can set up your composite alarm to go into ALARM and send you notifications when the underlying metric alarms go into ALARM by configuring the underlying metric alarms never to take actions.
 
-## Session Manager ##
+### Session Manager ###
 Is a fully managed AWS Systems Manager capability that lets you manage your EC2 instances, on-premises instances, and virtual machines (VMs) through an interactive one-click browser-based shell or through the AWS CLI.
 https://docs.aws.amazon.com/es_es/systems-manager/latest/userguide/session-manager.html
 
@@ -77,16 +82,18 @@ Is an open source tool from Amazon Web Services (AWS). You can use it to interac
 
 With minimal configuration, you can use the AWS CLI to  commands that implement functionality equivalent to that provided by the browser-based AWS Management Console. Here’s what you can do from the command prompt in your terminal program:
 
-Use common Linus shell programs such as Bash, zsh, and tcsh to run commands in Linux or macOS.
+Use common Linux shell programs such as Bash, zsh, and tcsh to run commands in Linux or macOS.
 Run commands on Windows at the Windows command prompt or in PowerShell.
 Remotely run commands on Amazon Elastic Compute Cloud (Amazon EC2) instances through a remote terminal program such as PuTTY, SSH, or with AWS Systems Manager.
 Using AWS CloudShell, a browser-based shell, you can quickly run scripts with the AWS CLI, experiment with service APIs, and use other tools to increase your productivity. The CloudShell icon appears in AWS Regions where CloudShell is available.
 
-## Service control policies (SCPs) ##
-Are a type of organization policy that you can use to manage permissions in your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization.
+### Service control policies (SCPs) ###
+- Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization. SCPs help you to ensure your accounts stay within your organization’s access control guidelines.
+- Are a type of organization policy that you can use to manage permissions in your organization. SCPs offer central control over the maximum available permissions for all accounts in your organization.
 
 ## AWS App2Container (A2C) ##
-Is a command line tool to help you lift and shift applications that run in your on-premises data centers or on virtual machines, so that they run in containers that are managed by Amazon ECS, Amazon EKS, or AWS App Runner.
+- Is a command line tool to help you lift and shift applications that run in your on-premises data centers or on virtual machines
+- so that they run in containers that are managed by Amazon ECS, Amazon EKS, or AWS App Runner.
 
 ## AWS Systems Manager ##
 Provides configuration management, which helps you maintain consistent configuration of your Amazon EC2 or on-premises instances. With Systems Manager, you can control configuration details such as server configurations, anti-virus definitions, firewall settings, and more.
@@ -138,10 +145,13 @@ NAT gateway: IPv4
 IPv6.
 
 ## AWS Direct Connect ##
-Is a network service that allows you to establish a dedicated network connection from your on-premises data center to AWS. This connection bypasses the public Internet and can provide more reliable, lower-latency communication between your on-premises application and Amazon S3. By directing backup traffic through the AWS Direct Connect connection, you can minimize the impact on your internet bandwidth and ensure timely backups to S3.
+- Is a network service that allows you to establish a dedicated network connection from your on-premises data center to AWS. 
+- This connection bypasses the public Internet and can provide more reliable, lower-latency communication between your on-premises application and Amazon S3. -
+- By directing backup traffic through the AWS Direct Connect connection, you can minimize the impact on your internet bandwidth and ensure timely backups to S3.
 
 ## Access control lists (ACLs) ##
-Are one of the resource-based options that you can use to manage access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other AWS accounts.
+- Are one of the resource-based options that you can use to manage access to your buckets and objects. 
+- You can use ACLs to grant basic read/write permissions to other AWS accounts.
 
 ## Security Groups ##
 AWS Security Groups help you secure your cloud environment by controlling how traffic will be allowed into your EC2 machines. With Security Groups, you can ensure that all the traffic that flows at the instance level is only through your established ports and protocols.
@@ -220,6 +230,7 @@ Is for data that is accessed less frequently, but requires rapid access when nee
 - Use standard SQL
 - Can run ad-hoc queries and get result in seconds.
 - Athena queries historical data from S3.
+- Serverless
 
 ## S3 Object Lock ##
 Used to store objects using a write-once-read-many (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. You can use S3 Object Lock to meet regulatory requirements that require WORM storage, or add an extra layer of protection against object changes and deletion.
@@ -232,10 +243,10 @@ Enables you to place a legal hold on an object version. Like setting a retention
 Is a fully managed S3 storage analytics solution that provides a comprehensive view of object storage usage, activity trends, and recommendations to optimize costs. Storage Lens allows you to analyze object access patterns across all of your S3 buckets and generate detailed metrics and reports.
 
 ## S3 Lock mmodes ##
-### Compliance Mode. ###
+### Governance Mode ###
 Set the specific rule tou want to be applied.
 
-### Governance Mode ###
+### Compliance Mode. ###
 Is that there are NO users that can override the retention periods set or delete an object, and that also includes your AWS root account which has the highest privileges.
 
 ## AWS Action ##
@@ -328,10 +339,11 @@ RDS Proxy: RDS Proxy is designed to manage database connections, pooling, and fa
 Minimizing Changes: RDS Proxy can be introduced without significant changes to the application's architecture. It acts as an intermediary between the application and the database, handling connection pooling and reducing the load on the database.
 
 ## Amazon DynamoDB ##
-Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
+- Is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
 DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
 DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. For more information, see DynamoDB encryption at rest.
-Using DynamoDB's global tables feature, you can achieve a globally consistent reservation database with low latency on updates, making it suitable for serving a global user base. The automatic replication provided by DynamoDB eliminates the need for manual synchronization between Regions.
+Using DynamoDB's global tables feature, you can achieve a globally consistent reservation database with low latency on updates, making it suitable for serving a global user base. 
+- The automatic replication provided by DynamoDB eliminates the need for manual synchronization between Regions.
 Keywoards: key-value data
 
 ## Amazon DynamoDB point-in-time recovery ## 
@@ -360,7 +372,7 @@ While Amazon ElastiCache can improve performance by caching frequently accessed 
 
 ## Caching strategies ##
 
-Lazy loading
+### Lazy loading ###
 
 As the name implies, lazy loading is a caching strategy that loads data into the cache only when necessary. It works as described following.
 
@@ -445,6 +457,10 @@ AWS Snowmobile is an Exabyte-scale data migration device used to move extremely 
 Connects on-premises environments with cloud storage through cached volumes, stored volumes and tape-based backup.
 SMB.
 AWS Storage Gateway Volume Gateway provides two configurations for connecting to iSCSI storage, namely, stored volumes and cached volumes. The stored volume configuration stores the entire data set on-premises and asynchronously backs up the data to AWS. The cached volume configuration stores recently accessed data on-premises, and the remaining data is stored in Amazon S3.
+- SMB
+- NFS
+- ISCSI vtl
+- https://www.youtube.com/watch?v=SuVQyUku1po
 
 ## Managed file transfer ##
 
@@ -476,6 +492,7 @@ Allow you to recover your database to any point in time within your specified re
 
 ## With its virtual tape library (VTL) interface (iSCSI) ##
 You use your existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on your Tape Gateway. Each Tape Gateway is preconfigured with a media changer and tape drives.
+
 ---
 
 # Processing Strategy #
@@ -614,14 +631,11 @@ Also known as session persistence — is the method that makes it possible for t
 Is an on-demand, auto-scaling configuration for Aurora where the database automatically starts up, shuts down, and scales capacity up or down based on your application's needs.
 
 ### Amazon Relational Database Service (Amazon RDS) ###
-Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
+- Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
 Do not support io2.
 
 ### Amazon Relational Database Service (Amazon RDS) for MySQL ###
 Is a fully managed, open source, relational database that makes it easier to set up, operate, and scale MySQL databases in the cloud.
-
-### Amazon Relational Database Service (Amazon RDS) ###
-- Is a web service that makes it easier to set up, operate, and scale a relational database in the AWS Cloud. It provides cost-efficient, resizable capacity for an industry-standard relational database and manages common database administration tasks.
 
 ### Amazon RDS proxy ###
 Allows you to automatically route write request to the healthy writer, minimizing downtime.
