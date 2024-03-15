@@ -101,7 +101,7 @@ Provides configuration management, which helps you maintain consistent configura
 ## Why is necessary to tag in aws ##
 Tagging is the act of assigning metadata to the different resources in your AWS environment for a variety of purposes, such as Attribute Based Access Control (ABAC), Cloud Financial Management, and automation (such as patching for select tagged instances). Tagging can also be used to create new resource constructs for visibility or control (such as grouping together resources that make up a micro-service, application, or workload). Tagging is fundamental to providing enterprise-level visibility and control
 
-![Tagging](images/tagging-on-aws.png)
+![Tagging](AWS/SAA-C03/images/tagging-on-aws.png)
 
 ---
 
@@ -111,7 +111,7 @@ Allows you to launch AWS resources in a logically isolated virtual network that 
 
 This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS.
 
-![VPC](/images/vpc.png)
+![VPC](/AWS/SAA-C03/images/vpc.png)
 
 ### VPC Endpoints ###
 - Allows to connect to AWS services using a private network instead using the public internet.
@@ -121,7 +121,7 @@ This virtual network closely resembles a traditional network that you'd operate 
 ### VPC and subnets overview ###
 The following diagram provides an overview of the resources included in this example. The VPC has public subnets and private subnets in two Availability Zones. Each public subnet contains a NAT gateway and a load balancer node. The servers run in the private subnets, are launched and terminated by using an Auto Scaling group, and receive traffic from the load balancer. The servers can connect to the internet by using the NAT gateway. The servers can connect to Amazon S3 by using a gateway VPC endpoint.
 
-![VPC Subnets Structure Overview](/images/vpc-subnets-structure-overview.png)
+![VPC Subnets Structure Overview](/AWS/SAA-C03/images/vpc-subnets-structure-overview.png)
 
 ### Virtual private gateway ###
 A virtual private gateway is the VPN endpoint on the Amazon side of your Site-to-Site VPN connection that can be attached to a single VPC
@@ -164,7 +164,7 @@ Security groups act at the network interface level, not the subnet level, and th
 
 Security group rules are always permissive; you can't create rules that deny access.
 
-![Security Group](/images/security-group.png)
+![Security Group](/AWS/SAA-C03/images/security-group.png)
 
 ### Classless Inter-Domain Routing (CIDR) ###
 Is an IP address allocation method that improves data routing efficiency on the internet. Every machine, server, and end-user device that connects to the internet has a unique number, called an IP address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations use CIDR to allocate IP addresses flexibly and efficiently in their networks.
@@ -199,7 +199,7 @@ Storage as a Service (StaaS) is a way for organizations to manage storage capaci
 ## Amazon Simple Storage Service (S3) ##
 An object storage service offering industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can store and protect any amount of data for virtually any use case, such as data lakes, cloud-native applications, and mobile apps. With cost-effective storage classes and easy-to-use management features, you can optimize costs, organize data, and configure fine-tuned access controls to meet specific business, organizational, and compliance requirements.
 
-![S3](/images/S3.png)
+![S3](/AWS/SAA-C03/images/S3.png)
 
 ### S3 Transfer Acceleration ###
 - Good for high speed
@@ -317,7 +317,7 @@ Automates the starting and stopping of Amazon Elastic Compute Cloud (Amazon EC2)
 ### Amazon File Cache ###
 Provides a high-speed cache on AWS that makes it easier to process file data, regardless of where it’s stored. Amazon File Cache serves as temporary, high-performance storage for data on premises or on AWS. The service allows you to make dispersed datasets available to file-based applications on AWS with a unified view and high speeds.
 
-![Amazon File Cache](images/amazon-file-cache.png)
+![Amazon File Cache](AWS/SAA-C03/images/amazon-file-cache.png)
 
 ### Amazon Neptune ###
 Is a fast, reliable, fully managed graph database service that makes it easy to build and run applications that work with highly connected datasets. The core of Neptune is a purpose-built, high-performance graph database engine. This engine is optimized for storing billions of relationships and querying the graph with milliseconds latency. Neptune supports the popular property-graph query languages Apache TinkerPop Gremlin and Neo4j's openCypher, and the W3C's RDF query language, SPARQL. This enables you to build queries that efficiently navigate highly connected datasets. Neptune powers graph use cases such as recommendation engines, fraud detection, knowledge graphs, drug discovery, and network security.
@@ -476,13 +476,13 @@ Using custom identity provider options allows you to integrate with existing ide
 Minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage, minimal compute, and point-in-time recovery.
 Set up AWS Elastic Disaster Recovery on your source servers to initiate secure data replication. Your data is replicated to a staging area subnet in your AWS account, in the AWS Region you select. The staging area design reduces costs by using affordable storage and minimal compute resources to maintain ongoing replication. You can perform non-disruptive tests to confirm that implementation is complete. During normal operation, maintain readiness by monitoring replication and periodically performing non-disruptive recovery and failback drills. If you need to recover applications, you can launch recovery instances on AWS within minutes, using the most up-to-date server state or a previous point in time. After your applications are running on AWS, you can choose to keep them there, or you can initiate data replication back to your primary site when the issue is resolved. You can fail back to your primary site whenever you’re ready.
 
-![DRS](images/aws-drs.png)
+![DRS](AWS/SAA-C03/images/aws-drs.png)
 
 ### AWS Backup ###
 Is a fully managed backup service that makes it easy to centralize and automate the backup of data across AWS resources. It allows you to create backup policies and schedules to automatically back up your DynamoDB tables on a regular basis. You can also specify retention policies to ensure that your backups are retained for the required period of time. This solution is fully automated and requires minimal maintenance, making it the most operationally efficient option.
 NO Glacier Deep is supported by AWS Backup.
 
-![AWS Backup](images/aws-backup.png)
+![AWS Backup](AWS/SAA-C03/images/aws-backup.png)
 
 ### AWS Backup API and CLI ###
 Allow programmatic control of backup plans and restores. This enables restoring hundreds of EC2 instances programmatically after a disaster instead of manually.
@@ -501,7 +501,7 @@ You use your existing tape-based backup infrastructure to store data on virtual 
 - Deliver A2A notifications to integrate and decouple distributed applications.
 - Amazon Simple Notification Service (Amazon SNS) is a managed service that provides message delivery from publishers to subscribers (also known as producers and consumers). Publishers communicate asynchronously with subscribers by sending messages to a topic, which is a logical access point and communication channel.
 - Clients can subscribe to the SNS topic and receive published messages using a supported endpoint type, such as Amazon Kinesis Data Firehose, Amazon SQS, AWS Lambda, HTTP, email, mobile push notifications, and mobile text messages (SMS).
-![SNS Diagram](/images/simple-notification-service-diagram.png)
+![SNS Diagram](/AWS/SAA-C03/images/simple-notification-service-diagram.png)
 
 ### Simple Queue Service ###
 - Queues messages managed for microservices, distributed systems and serverless applications.
@@ -521,7 +521,7 @@ In case of SQS - multi-consumers if one consumer has already picked the message 
 
 - The S3 Glacier storage classes provide virtually unlimited scalability and are designed for 99.999999999% (11 nines) of data durability.
 
-![Glaciers](images/s3-glacier-overview.png)
+![Glaciers](AWS/SAA-C03/images/s3-glacier-overview.png)
 
 ---
 
@@ -565,7 +565,7 @@ Geographically dispersed.
 - Is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or Voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover. Both services integrate with AWS Shield for DDoS protection.
 - Improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. 
 
-![AWS Global Accelerator](/images/aws-global-accelerator.png)
+![AWS Global Accelerator](/AWS/SAA-C03/images/aws-global-accelerator.png)
 
 ## Amazon Route 53 ##
 Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises.
@@ -589,7 +589,7 @@ Is designed to direct traffic to a backup resource or secondary location only wh
 ### weighted routing policy ###
 Allows you to distribute traffic across multiple EC2 instances, it does not ensure random distribution
 
-![Amazon Route 53](/images/amazon-route-53.png)
+![Amazon Route 53](/AWS/SAA-C03/images/amazon-route-53.png)
 
 ## DNS Validation ##
 The Domain Name System (DNS) is a directory service for resources that are connected to a network. Your DNS provider maintains a database containing records that define your domain. When you choose DNS validation, ACM provides you with one or more CNAME records that must be added to this database. These records contain a unique key-value pair that serves as proof that you control the domain.
@@ -832,7 +832,7 @@ You can orchestrate large-scale parallel workloads to perform tasks, such as on-
 To set up a large-scale parallel workload in your workflows, include a Map state in Distributed mode. The Map state processes items in a dataset concurrently. A Map state set to Distributed is known as a Distributed Map state. In Distributed mode, the Map state allows high-concurrency processing. In Distributed mode, the Map state processes the items in the dataset in iterations called child workflow executions. You can specify the number of child workflow executions that can run in parallel. Each child workflow execution has its own, separate execution history from that of the parent workflow. If you don't specify, Step Functions runs 10,000 parallel child workflow executions in parallel.
 
 The following illustration explains how you can set up large-scale parallel workloads in your workflows.
-![Step Functions Parallel Execution](images/step-functions-parallel.png)
+![Step Functions Parallel Execution](AWS/SAA-C03/images/step-functions-parallel.png)
 
 ### AWS Batch ###
 Helps you to run batch computing workloads on the AWS Cloud. Batch computing is a common way for developers, scientists, and engineers to access large amounts of compute resources. AWS Batch removes the undifferentiated heavy lifting of configuring and managing the required infrastructure, similar to traditional batch computing software. This service can efficiently provision resources in response to jobs submitted in order to eliminate capacity constraints, reduce compute costs, and deliver results quickly.
@@ -1176,7 +1176,7 @@ Is a set of purpose-built tools and features that enables frontend web and mobil
 
 # Amazon FSx for Lustre #
 Provides fully managed shared storage with the scalability and performance of the popular Lustre file system.
-![Lustre](images/lustre.png)
+![Lustre](AWS/SAA-C03/images/lustre.png)
 
 ###  Use Amazon FSx for Lustre persistent file systems ###
 Amazon FSx for Lustre provides two deployment options: scratch and persistent. Scratch file systems are designed for temporary storage and shorter-term processing of data. Data is not replicated and does not persist if a file server fails. Persistent file systems are designed for longer-term storage and workloads.
