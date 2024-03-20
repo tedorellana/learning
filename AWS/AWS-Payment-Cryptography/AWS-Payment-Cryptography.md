@@ -20,7 +20,7 @@
 - Cardholder information is encrypted immediately after card is used by a point-of-sale and isn´t decrypted until it has beend processed by the payment processor.
 
 ### DUKPT (Derived Unique Key Per Transaction)
-- Key management standard used to define use of one-tiem encryption keys on phyisical devices (POSs).
+- Key management standard used to define use of one-time encryption keys on phyisical devices (POSs).
 - Usually leverages 3DES.
 
 ### AWK (Acquire Working Key)

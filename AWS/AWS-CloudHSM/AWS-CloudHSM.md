@@ -15,7 +15,7 @@
 - HSM User has types that determines which operations can perform on the HSM.
 - Each HSM authenticates each HSM User by means of credentials that were defined using CloudHSM CLI.
 
-#### HSM Keys
+### HSM Keys
 AWS CloudHSM allows you the follow actions for the encryption keys in an single tenant HSMs that are in your cluster:
     - Generate
     - Store
@@ -34,3 +34,16 @@ AWS CloudHSM allows you the follow actions for the encryption keys in an single 
   - OpenSSL Dynamic Engine
   - Cryptography API: Next Generation an Key storage provider for Microsoft Windows.
 
+### ZPK (Zone Master Key)
+- Also known as an Interchange key (IK).
+- Is a key-encrypting key which is distributed manually between two communicating sites, within a shared network, in order that further keys can be exchanged automatically.
+- The ZMK is used to encrypt keys of a lower level (e.g. ZPK) for transmission.
+
+The ZMK is exchanged using secured methods and Split knowledge policy. The IK is split into two components that are sent by two separate physical couriers to two nominated Security Officers of the other party. This is one of the most secure way to do it since no single person gains knowledge of the clear ZMK.
+
+Here is the detailed Process. please note values indicated here are for testing only, in live environment the values will be exchanged securely.
+
+### ZPK (Zone PIN Key)
+- Also known as a A PIN Protection Key (PPK).
+- Is a data encrypting key which is distributed automatically and is used to encrypt PINs. 
+- For security and protocol reasons the HSM where this key generated, never exposes the ZPK in clear. But it can be exported using another key called ZMK (Interchange Key). In this context exports actually means use the ZMK Key to encrypt the ZPK and give back to the user.
